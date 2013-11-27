@@ -10,10 +10,10 @@ import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.BeanUtils;
 import net.simpleframework.common.DateUtils;
 import net.simpleframework.common.StringUtils;
-import net.simpleframework.ctx.InjectCtx;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 import net.simpleframework.ctx.trans.Transaction;
 import net.simpleframework.module.log.ILogContext;
+import net.simpleframework.module.log.ILogContextAware;
 import net.simpleframework.module.log.web.page.ILogConst;
 import net.simpleframework.mvc.IForward;
 import net.simpleframework.mvc.JavascriptForward;
@@ -21,6 +21,7 @@ import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.common.element.LinkButton;
 import net.simpleframework.mvc.common.element.Option;
+import net.simpleframework.mvc.common.element.SpanElement;
 import net.simpleframework.mvc.common.element.TabButton;
 import net.simpleframework.mvc.common.element.TabButtons;
 import net.simpleframework.mvc.component.ComponentParameter;
@@ -36,15 +37,16 @@ import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implements ILogConst {
-
-	@InjectCtx
-	protected static ILogContext logContext;
-
+public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implements ILogConst,
+		ILogContextAware {
 	@Override
 	protected void onForward(final PageParameter pp) {
 		super.onForward(pp);
 
+		addLogComponents(pp);
+	}
+
+	protected void addLogComponents(final PageParameter pp) {
 		// 删除
 		addDeleteAjaxRequest(pp, "AbstractLogMgrPage_delete");
 
@@ -61,7 +63,7 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 
 	@Override
 	public String getRole(final PageParameter pp) {
-		return logContext.getManagerRole();
+		return context.getManagerRole();
 	}
 
 	protected TablePagerBean addTablePagerBean(final PageParameter pp,
@@ -94,15 +96,19 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 
 	@Override
 	protected TabButtons getTabButtons(final PageParameter pp) {
-		return TabButtons.of(new TabButton($m("EntityDeleteLogMgrPage.0"),
-				url(EntityDeleteLogMgrPage.class)), new TabButton($m("LoginLogMgrPage.0"),
-				url(LoginLogMgrPage.class)), new TabButton($m("DownloadLogMgrPage.0"),
-				url(DownloadLogMgrPage.class)));
+		return TabButtons.of(new TabButton($m("AbstractLogMgrPage.1"),
+				url(EntityDeleteLogMgrPage.class)), new TabButton($m("PVStatMgrPage.0"),
+				url(PVStatMgrPage.class)));
 	}
 
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
-		return ElementList.of();
+		return ElementList.of(new SpanElement().setClassName("tabbtns").addHtml(
+				TabButtons.of(
+						new TabButton($m("EntityDeleteLogMgrPage.0"), url(EntityDeleteLogMgrPage.class)),
+						new TabButton($m("LoginLogMgrPage.0"), url(LoginLogMgrPage.class)),
+						new TabButton($m("DownloadLogMgrPage.0"), url(DownloadLogMgrPage.class)))
+						.toString(pp)));
 	}
 
 	@Override

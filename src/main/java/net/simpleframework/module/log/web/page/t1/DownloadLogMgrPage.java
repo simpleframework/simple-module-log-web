@@ -14,7 +14,6 @@ import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
 import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.common.element.ElementList;
-import net.simpleframework.mvc.common.element.SpanElement;
 import net.simpleframework.mvc.component.ComponentParameter;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
@@ -60,13 +59,13 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 
 	@Override
 	protected IDownloadLogService getBeanService() {
-		return logContext.getDownloadLogService();
+		return context.getDownloadLogService();
 	}
 
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
 		pp.putParameter(G, COL_CREATEDATE);
-		return super.getRightElements(pp).append(SpanElement.SPACE,
+		return super.getRightElements(pp).append(
 				createGroupElement(pp, "AbstractLogMgrPage_tbl", OPTION_CREATEDATE));
 	}
 
