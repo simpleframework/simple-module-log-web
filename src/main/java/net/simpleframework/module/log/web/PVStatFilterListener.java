@@ -15,6 +15,7 @@ import net.simpleframework.module.log.ILogContextAware;
 import net.simpleframework.module.log.IPVLogService;
 import net.simpleframework.module.log.PVLog;
 import net.simpleframework.mvc.IFilterListener;
+import net.simpleframework.mvc.IMVCConst;
 import net.simpleframework.mvc.PageRequestResponse;
 
 /**
@@ -31,6 +32,8 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 		Set<String> uv = new HashSet<String>();
 
 		Set<String> ip = new HashSet<String>();
+
+		int averageTime = 0;
 	}
 
 	final Map<String, PVStat> stats = new ConcurrentHashMap<String, PVStat>();
@@ -45,7 +48,10 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 			log.setPv(log.getPv() + _stat.pv);
 			log.setUv(log.getUv() + _stat.uv.size());
 			log.setIp(log.getIp() + _stat.ip.size());
-			lservice.update(new String[] { "pv", "uv", "ip" }, log);
+			if (_stat.pv > 1) {
+				log.setAverageTime(_stat.averageTime / (_stat.pv - 1));
+			}
+			lservice.update(new String[] { "pv", "uv", "ip", "averageTime" }, log);
 		}
 		stats.clear();
 	}
@@ -71,6 +77,8 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 			} else {
 				stat.uv.add(sessionId);
 			}
+			final int pt = Convert.toInt(rRequest.getSessionAttr(IMVCConst.PAGELOAD_TIME));
+			stat.averageTime += pt;
 		}
 		return EFilterResult.SUCCESS;
 	}
