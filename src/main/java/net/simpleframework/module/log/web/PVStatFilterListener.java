@@ -34,6 +34,10 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 		Set<String> ip = new HashSet<String>();
 
 		int averageTime = 0;
+
+		int minTime = 0;
+
+		int maxTime = 0;
 	}
 
 	final Map<String, PVStat> stats = new ConcurrentHashMap<String, PVStat>();
@@ -50,8 +54,10 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 			log.setIp(log.getIp() + _stat.ip.size());
 			if (_stat.pv > 1) {
 				log.setAverageTime(_stat.averageTime / (_stat.pv - 1));
+				log.setMinTime(_stat.minTime);
+				log.setMaxTime(_stat.maxTime);
 			}
-			lservice.update(new String[] { "pv", "uv", "ip", "averageTime" }, log);
+			lservice.update(log);
 		}
 		stats.clear();
 	}
@@ -66,6 +72,7 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 				updateStats();
 				stats.put(dk, stat = new PVStat());
 			}
+
 			stat.pv++;
 			stat.ip.add(rRequest.getRemoteAddr());
 			Object userId;
@@ -77,8 +84,16 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 			} else {
 				stat.uv.add(sessionId);
 			}
+
 			final int pt = Convert.toInt(rRequest.getSessionAttr(IMVCConst.PAGELOAD_TIME));
 			stat.averageTime += pt;
+
+			if (stat.minTime == 0 || pt < stat.minTime) {
+				stat.minTime = pt;
+			}
+			if (stat.maxTime == 0 || pt > stat.maxTime) {
+				stat.maxTime = pt;
+			}
 		}
 		return EFilterResult.SUCCESS;
 	}

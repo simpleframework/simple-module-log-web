@@ -43,6 +43,8 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 	protected void onForward(final PageParameter pp) {
 		super.onForward(pp);
 
+		pp.addImportCSS(AbstractLogMgrPage.class, "/log.css");
+
 		addLogComponents(pp);
 	}
 
@@ -52,13 +54,6 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 
 		// 用户选择
 		addUserSelectForTbl(pp, "AbstractLogMgrPage_tbl");
-	}
-
-	@Override
-	protected void addImportCSS(final PageParameter pp) {
-		super.addImportCSS(pp);
-
-		pp.addImportCSS(AbstractLogMgrPage.class, "/log.css");
 	}
 
 	@Override
