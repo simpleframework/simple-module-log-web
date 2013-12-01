@@ -76,7 +76,7 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 			count = 12;
 			title = $m("PVStatMgrPage.7");
 		} else {
-			count = 24;
+			count = 23;
 			start = -1;
 			title = $m("PVStatMgrPage.1");
 		}
