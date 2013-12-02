@@ -51,7 +51,6 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 	protected void addLogComponents(final PageParameter pp) {
 		// 删除
 		addDeleteAjaxRequest(pp, "AbstractLogMgrPage_delete");
-
 		// 用户选择
 		addUserSelectForTbl(pp, "AbstractLogMgrPage_tbl");
 	}
