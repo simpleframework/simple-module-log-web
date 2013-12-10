@@ -98,9 +98,8 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
 		return ElementList.of(new SpanElement().setClassName("tabbtns").addHtml(
-				TabButtons.of(
+				TabButtons.of(new TabButton($m("LoginLogMgrPage.0"), url(LoginLogMgrPage.class)),
 						new TabButton($m("EntityDeleteLogMgrPage.0"), url(EntityDeleteLogMgrPage.class)),
-						new TabButton($m("LoginLogMgrPage.0"), url(LoginLogMgrPage.class)),
 						new TabButton($m("DownloadLogMgrPage.0"), url(DownloadLogMgrPage.class)))
 						.toString(pp)));
 	}
