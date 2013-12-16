@@ -90,9 +90,8 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 
 	@Override
 	protected TabButtons getTabButtons(final PageParameter pp) {
-		return TabButtons.of(new TabButton($m("AbstractLogMgrPage.1"),
-				url(EntityDeleteLogMgrPage.class)), new TabButton($m("PVStatMgrPage.0"),
-				url(PVStatMgrPage.class)));
+		return TabButtons.of(new TabButton($m("AbstractLogMgrPage.1"), url(LoginLogMgrPage.class)),
+				new TabButton($m("PVStatMgrPage.0"), url(PVStatMgrPage.class)));
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.simpleframework.ado.bean.IIdBeanAware;
-import net.simpleframework.ado.db.common.TableColumn;
+import net.simpleframework.ado.db.DbTableColumn;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.StringUtils;
@@ -107,7 +107,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	protected Map<String, Object> getRowData(final ComponentParameter cp, final EntityUpdateLog field) {
 		final KVMap kv = new KVMap();
 		final String valName = field.getValName();
-		final TableColumn col = getTableColumns(cp, valName);
+		final DbTableColumn col = getTableColumns(cp, valName);
 		kv.put(COL_VALNAME, col != null ? col.getText() : valName);
 		final String fromVal = field.getFromVal(), toVal = field.getToVal();
 		kv.put(COL_FROMVAL, new SpanElement(fromVal == null ? "[NULL]" : fromVal).setColor("#700"));
@@ -130,7 +130,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 
 	protected Object convertGroupVal(final PageParameter pp, final String g, final Object groupVal) {
 		if (COL_VALNAME.equals(g)) {
-			final TableColumn oCol = getTableColumns(pp, (String) groupVal);
+			final DbTableColumn oCol = getTableColumns(pp, (String) groupVal);
 			if (oCol != null) {
 				String txt = oCol.getText();
 				if (!txt.equals(groupVal)) {
@@ -147,13 +147,14 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	private static final String BEAN_TABLE_COLUMNs = "BEAN_TABLE_COLUMNs";
 
 	@SuppressWarnings("unchecked")
-	protected TableColumn getTableColumns(final PageParameter pp, final String valName) {
-		Map<String, TableColumn> cols = (Map<String, TableColumn>) pp
+	protected DbTableColumn getTableColumns(final PageParameter pp, final String valName) {
+		Map<String, DbTableColumn> cols = (Map<String, DbTableColumn>) pp
 				.getRequestAttr(BEAN_TABLE_COLUMNs);
 		if (cols == null) {
 			final Object o = getBean(pp);
 			if (o instanceof IIdBeanAware) {
-				pp.setRequestAttr(BEAN_TABLE_COLUMNs, cols = TableColumn.getTableColumns(o.getClass()));
+				pp.setRequestAttr(BEAN_TABLE_COLUMNs,
+						cols = DbTableColumn.getTableColumns(o.getClass()));
 			}
 		}
 		return cols != null ? cols.get(valName) : null;
