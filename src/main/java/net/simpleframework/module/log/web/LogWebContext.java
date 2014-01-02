@@ -3,8 +3,9 @@ package net.simpleframework.module.log.web;
 import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.Module;
+import net.simpleframework.ctx.ModuleFunctions;
 import net.simpleframework.module.log.impl.LogContext;
-import net.simpleframework.module.log.web.page.t1.EntityDeleteLogMgrPage;
+import net.simpleframework.module.log.web.page.t1.LoginLogMgrPage;
 import net.simpleframework.mvc.IMVCContextVar;
 import net.simpleframework.mvc.ctx.WebModuleFunction;
 
@@ -35,8 +36,15 @@ public class LogWebContext extends LogContext implements IMVCContextVar {
 
 	@Override
 	protected Module createModule() {
-		return super.createModule().setDefaultFunction(
-				new WebModuleFunction(EntityDeleteLogMgrPage.class).setName(
-						MODULE_NAME + "-EntityDeleteLogMgrPage").setText($m("LogContext.0")));
+		return super.createModule().setDefaultFunction(FUNC_LOGINLOG_MGR);
 	}
+
+	@Override
+	protected ModuleFunctions getFunctions() {
+		return ModuleFunctions.of(FUNC_LOGINLOG_MGR);
+	}
+
+	public static WebModuleFunction FUNC_LOGINLOG_MGR = (WebModuleFunction) new WebModuleFunction(
+			LoginLogMgrPage.class).setName(MODULE_NAME + "-LoginLogMgrPage").setText(
+			$m("LogContext.0"));
 }
