@@ -80,8 +80,8 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 	public static class AttachmentTooltipExPage extends AttachmentTooltipPage {
 
 		@Override
-		protected void addComponents(final PageParameter pp) {
-			super.addComponents(pp);
+		protected void onForward(final PageParameter pp) {
+			super.onForward(pp);
 
 			pp.addComponentBean("AttachmentTooltipExPage_logPage", AjaxRequestBean.class)
 					.setUrlForward(AbstractMVCPage.url(AttachmentLogPage.class));

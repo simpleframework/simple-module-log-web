@@ -37,8 +37,8 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 	public static final String COL_TBLNAME = "tblName";
 
 	@Override
-	protected void addComponents(final PageParameter pp) {
-		super.addComponents(pp);
+	protected void onForward(final PageParameter pp) {
+		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, DeleteLogTbl.class);
 		tablePager
