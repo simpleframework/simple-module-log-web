@@ -1,6 +1,7 @@
 package net.simpleframework.module.log.web.page;
 
 import net.simpleframework.ctx.InjectCtx;
+import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 import net.simpleframework.module.log.ILogContext;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.template.lets.OneTableTemplatePage;
@@ -17,9 +18,19 @@ public abstract class AbstractLogPage extends OneTableTemplatePage implements IL
 	protected static ILogContext logContext;
 
 	/* 子类定义监听的实体Bean对象 */
-	protected abstract Object getBean(PageParameter pp);
+	protected Object getBean(final PageParameter pp) {
+		final IDbBeanService<?> beanService = getBeanService();
+		if (beanService == null) {
+			return null;
+		}
+		return getCacheBean(pp, beanService, getBeanIdParameter(pp));
+	}
 
-	public String getBeanIdParameter() {
+	protected IDbBeanService<?> getBeanService() {
+		return null;
+	}
+
+	public String getBeanIdParameter(final PageParameter pp) {
 		return "beanId";
 	}
 }

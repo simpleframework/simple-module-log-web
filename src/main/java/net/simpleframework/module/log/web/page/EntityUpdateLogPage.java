@@ -195,7 +195,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 			if (bean == null) {
 				return DataQueryUtils.nullQuery();
 			}
-			cp.addFormParameter(page.getBeanIdParameter(),
+			cp.addFormParameter(page.getBeanIdParameter(cp),
 					bean instanceof IIdBeanAware ? ((IIdBeanAware) bean).getId() : bean);
 			return logContext.getEntityUpdateLogService().queryLog(bean);
 		}

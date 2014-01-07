@@ -84,8 +84,8 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 		final KVMap kv = new KVMap();
 		final Object bean = getBean(cp);
 		if (bean != null) {
-			kv.add(getBeanIdParameter(), bean instanceof IIdBeanAware ? ((IIdBeanAware) bean).getId()
-					: bean);
+			kv.add(getBeanIdParameter(cp),
+					bean instanceof IIdBeanAware ? ((IIdBeanAware) bean).getId() : bean);
 		}
 		return kv;
 	}
