@@ -1,6 +1,7 @@
 package net.simpleframework.module.log.web.hdl;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import net.simpleframework.ado.bean.AbstractIdBean;
@@ -91,7 +92,8 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 
 		@SuppressWarnings("unchecked")
 		@Override
-		protected Object getTopic(final PageParameter pp, final AttachmentFile attachment) {
+		protected Object getTopic(final PageParameter pp, final AttachmentFile attachment)
+				throws IOException {
 			final ComponentParameter cp = AttachmentUtils.get(pp);
 			return new LinkElement(super.getTopic(pp, attachment)).setOnclick("$Actions.loc('"
 					+ DownloadUtils.getDownloadHref(attachment, (Class<? extends IDownloadHandler>) cp
