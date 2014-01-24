@@ -194,7 +194,7 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 	}
 
 	@Override
-	protected TabButtons getTabButtons(final PageParameter pp) {
+	public TabButtons getTabButtons(final PageParameter pp) {
 		return singleton(EntityDeleteLogMgrPage.class).getTabButtons(pp);
 	}
 
