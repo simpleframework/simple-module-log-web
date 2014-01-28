@@ -30,7 +30,6 @@ import net.simpleframework.mvc.component.ext.highchart.HcTooltip;
 import net.simpleframework.mvc.component.ext.highchart.HcXAxis;
 import net.simpleframework.mvc.component.ext.highchart.HcYAxis;
 import net.simpleframework.mvc.component.ext.highchart.HighchartBean;
-import net.simpleframework.mvc.component.ui.calendar.CalendarBean;
 import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
 
 /**
@@ -97,7 +96,7 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 		} else if (m) {
 			data = context.getPVLogService().getMonthStat(_getYear(pp));
 		} else {
-			addComponentBean(pp, "PVStatMgrPage_cal", CalendarBean.class).setClearButton(false)
+			addCalendarBean(pp, "PVStatMgrPage_cal").setClearButton(false)
 					.setCloseCallback(
 							"$Actions.loc('" + url(PVStatMgrPage.class)
 									+ "?date=' + date.format('yyyy-MM-dd'))");
