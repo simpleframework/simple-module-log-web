@@ -64,7 +64,7 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 			final Class<? extends LogTbl> tblClass) {
 		return (TablePagerBean) addTablePagerBean(pp, "AbstractLogMgrPage_tbl").setShowLineNo(true)
 				.setPageItems(50).setPagerBarLayout(EPagerBarLayout.bottom)
-				.setContainerId("tbl_" + hashId).setHandleClass(tblClass);
+				.setContainerId("tbl_" + hashId).setHandlerClass(tblClass);
 	}
 
 	protected TablePagerColumn createUserColumn(final PageParameter pp, final String columnText) {
