@@ -32,6 +32,7 @@ import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumns;
 import net.simpleframework.mvc.component.ui.pager.db.GroupDbTablePagerHandler;
+import net.simpleframework.mvc.template.TemplateUtils;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -62,7 +63,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		final TablePagerBean tablePager = (TablePagerBean) super.addTablePagerBean(pp, name, tHdl)
 				.setDetailField(TablePagerColumn.DESCRIPTION).setPageItems(50);
 		tablePager.addColumn(setColumnProperties(newColumn(COL_VALNAME)))
-				.addColumn(setColumnProperties(newColumn(COL_USERID)))
+				.addColumn(setColumnProperties(newColumn(COL_USERTEXT)))
 				.addColumn(setColumnProperties(newColumn(COL_CREATEDATE)))
 				.addColumn(setColumnProperties(newColumn(COL_FROMVAL)))
 				.addColumn(setColumnProperties(newColumn(COL_TOVAL)))
@@ -76,9 +77,8 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		if (COL_VALNAME.equals(name)) {
 			col.setColumnText($m("EntityUpdateLogPage.1")).setWidth(100).setTextAlign(ETextAlign.left)
 					.setFilter(false);
-		} else if (COL_USERID.equals(name)) {
-			col.setColumnText($m("EntityUpdateLogPage.4")).setWidth(100).setFilter(false)
-					.setTextAlign(ETextAlign.left);
+		} else if (COL_USERTEXT.equals(name)) {
+			col.setColumnText($m("EntityUpdateLogPage.4")).setWidth(100).setTextAlign(ETextAlign.left);
 		} else if (COL_CREATEDATE.equals(name)) {
 			col.setColumnText($m("EntityUpdateLogPage.6")).setWidth(115).setPropertyClass(Date.class);
 		} else if (COL_FROMVAL.equals(name)) {
@@ -112,7 +112,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		final String fromVal = field.getFromVal(), toVal = field.getToVal();
 		kv.put(COL_FROMVAL, new SpanElement(fromVal == null ? "[NULL]" : fromVal).setColor("#700"));
 		kv.put(COL_TOVAL, new SpanElement(toVal == null ? "[NULL]" : toVal).setColor("#070"));
-		kv.put(COL_USERID, toIconUser(cp, field.getUserId()));
+		kv.put(COL_USERTEXT, TemplateUtils.toIconUser(cp, field.getUserId(), field.getUserText()));
 		kv.put(COL_CREATEDATE, field.getCreateDate());
 		kv.put(COL_IP, field.getIp());
 		final String desc = field.getDescription();

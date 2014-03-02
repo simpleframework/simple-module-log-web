@@ -17,6 +17,7 @@ import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.component.ComponentParameter;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
+import net.simpleframework.mvc.template.TemplateUtils;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -38,8 +39,8 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 		final TablePagerBean tablePager = addTablePagerBean(pp, DownloadLogTbl.class);
 		tablePager
 				.addColumn(
-						createUserColumn(pp, $m("DownloadLogMgrPage.2")).setTextAlign(ETextAlign.left)
-								.setWidth(100))
+						new TablePagerColumn(COL_USERTEXT, $m("DownloadLogMgrPage.2"), 100)
+								.setTextAlign(ETextAlign.left))
 				.addColumn(
 						new TablePagerColumn(COL_CREATEDATE, $m("DownloadLogPage.1"), 120)
 								.setPropertyClass(Date.class))
@@ -74,7 +75,7 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
 			final DownloadLog log = (DownloadLog) dataObject;
 			final KVMap kv = new KVMap();
-			kv.add(COL_USERID, toIconUser(cp, log.getUserId()));
+			kv.add(COL_USERTEXT, TemplateUtils.toIconUser(cp, log.getUserId(), log.getUserText()));
 			kv.add(COL_CREATEDATE, log.getCreateDate());
 			kv.add(COL_LASTUPDATE, log.getLastUpdate());
 			kv.add(COL_FILESIZE, FileUtils.toFileSize(log.getFilesize()));

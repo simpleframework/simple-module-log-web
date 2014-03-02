@@ -8,7 +8,7 @@ package net.simpleframework.module.log.web.page;
  */
 public interface ILogConst {
 
-	public static final String COL_USERID = "userId";
+	public static final String COL_USERTEXT = "userText";
 	public static final String COL_CREATEDATE = "createDate";
 	public static final String COL_IP = "ip";
 }

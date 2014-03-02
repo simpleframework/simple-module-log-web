@@ -19,6 +19,7 @@ import net.simpleframework.mvc.common.element.SpanElement;
 import net.simpleframework.mvc.component.ComponentParameter;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
+import net.simpleframework.mvc.template.TemplateUtils;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -37,7 +38,9 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, LoginLogTbl.class);
 		tablePager
-				.addColumn(createUserColumn(pp, $m("LoginLogMgrPage.1")).setTextAlign(ETextAlign.left))
+				.addColumn(
+						new TablePagerColumn(COL_USERTEXT, $m("LoginLogMgrPage.1"), 120)
+								.setTextAlign(ETextAlign.left))
 				.addColumn(
 						new TablePagerColumn(COL_CREATEDATE, $m("LoginLogMgrPage.2"), 120)
 								.setPropertyClass(Date.class))
@@ -68,7 +71,7 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 			final LoginLog log = (LoginLog) dataObject;
 			final ID id = log.getId();
 			final KVMap kv = new KVMap();
-			kv.put(COL_USERID, toIconUser(cp, log.getUserId()));
+			kv.put(COL_USERTEXT, TemplateUtils.toIconUser(cp, log.getUserId(), log.getUserText()));
 			kv.add(COL_CREATEDATE, log.getCreateDate());
 			kv.add(COL_LOGOUTDATE, log.getLogoutDate());
 			kv.add(COL_IP, log.getIp());

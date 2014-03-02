@@ -27,7 +27,6 @@ import net.simpleframework.mvc.common.element.TabButtons;
 import net.simpleframework.mvc.component.ComponentParameter;
 import net.simpleframework.mvc.component.ui.pager.EPagerBarLayout;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
-import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
 import net.simpleframework.mvc.component.ui.pager.db.GroupDbTablePagerHandler;
 import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
 
@@ -65,10 +64,6 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 		return (TablePagerBean) addTablePagerBean(pp, "AbstractLogMgrPage_tbl").setShowLineNo(true)
 				.setPageItems(50).setPagerBarLayout(EPagerBarLayout.bottom)
 				.setContainerId("tbl_" + hashId).setHandlerClass(tblClass);
-	}
-
-	protected TablePagerColumn createUserColumn(final PageParameter pp, final String columnText) {
-		return createUserColumn(pp, COL_USERID, columnText, "AbstractLogMgrPage_tbl");
 	}
 
 	protected abstract IDbBeanService<?> getBeanService();

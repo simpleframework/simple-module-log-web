@@ -8,7 +8,6 @@ import java.util.Map;
 import net.simpleframework.ado.bean.IIdBeanAware;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
-import net.simpleframework.common.ID;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.common.coll.KVMap;
 import net.simpleframework.ctx.trans.Transaction;
@@ -44,7 +43,7 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 		final TablePagerBean tablePager = addTablePagerBean(pp, "DownloadLogPage_tbl",
 				DownloadLogTable.class);
 		tablePager
-				.addColumn(new TablePagerColumn(COL_USERID, $m("DownloadLogPage.0"), 100))
+				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("DownloadLogPage.0"), 100))
 				.addColumn(
 						new TablePagerColumn(COL_CREATEDATE, $m("DownloadLogPage.1"), 115)
 								.setPropertyClass(Date.class))
@@ -112,8 +111,8 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
 			final DownloadLog log = (DownloadLog) dataObject;
 			final KVMap kv = new KVMap();
-			final ID uId = log.getUserId();
-			kv.add(COL_USERID, uId == null ? $m("DownloadLogPage.3") : cp.getUser(uId));
+			final String userText = log.getUserText();
+			kv.add(COL_USERTEXT, StringUtils.hasText(userText) ? userText : $m("DownloadLogPage.3"));
 			kv.add(COL_CREATEDATE, log.getCreateDate());
 			kv.add(COL_IP, log.getIp());
 			kv.add(COL_LASTUPDATE, log.getLastUpdate());

@@ -24,6 +24,7 @@ import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumns;
 import net.simpleframework.mvc.component.ui.window.WindowBean;
+import net.simpleframework.mvc.template.TemplateUtils;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -43,7 +44,7 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 		final TablePagerBean tablePager = addTablePagerBean(pp, DeleteLogTbl.class);
 		tablePager
 				.addColumn(
-						createUserColumn(pp, $m("EntityDeleteLogMgrPage.2"))
+						new TablePagerColumn(COL_USERTEXT, $m("EntityDeleteLogMgrPage.2"), 120)
 								.setTextAlign(ETextAlign.left))
 				.addColumn(
 						new TablePagerColumn(COL_CREATEDATE, $m("EntityDeleteLogMgrPage.3"), 120)
@@ -96,7 +97,8 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 					final ID id = log.getId();
 					final KVMap kv = new KVMap();
 					kv.add(COL_TBLNAME, log.getTblName());
-					kv.add(COL_USERID, toIconUser(cp, log.getUserId()));
+					kv.add(COL_USERTEXT,
+							TemplateUtils.toIconUser(cp, log.getUserId(), log.getUserText()));
 					kv.add(COL_CREATEDATE, log.getCreateDate());
 					kv.add(COL_IP, log.getIp());
 					kv.add(TablePagerColumn.DESCRIPTION,
