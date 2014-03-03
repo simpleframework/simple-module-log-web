@@ -1,13 +1,22 @@
 .AbstractLogMgrPage>div {
 	margin: 10px 0;
-	width: 85%;
 }
 
 .PVStatMgrPage {
   border: 1px solid #aaa;
   background-color: #f5f5f5;
-  width: 85%;
   margin: 15px 0;
+}
+
+.AbstractLogMgrPage>div,
+.PVStatMgrPage {
+  width: 85%;
+  -webkit-box-shadow: 5px 5px 5px #aaa;
+	-moz-box-shadow: 5px 5px 5px #aaa;
+	box-shadow: 5px 5px 5px #aaa;
+	-moz-border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
 }
 
 .tb_container .text_button {

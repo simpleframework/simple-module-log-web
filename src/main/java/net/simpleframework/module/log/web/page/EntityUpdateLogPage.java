@@ -118,7 +118,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		final String desc = field.getDescription();
 		if (StringUtils.hasText(desc)) {
 			kv.put(TablePagerColumn.DESCRIPTION,
-					new SpanElement(desc).setStyle("color: #666; font-size: 9.5pt;"));
+					new SpanElement(desc).addStyle("color: #666; font-size: 9.5pt;"));
 		}
 
 		final StringBuilder sb = new StringBuilder();
