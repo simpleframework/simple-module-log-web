@@ -1,6 +1,7 @@
 package net.simpleframework.module.log.web.page;
 
 import net.simpleframework.ctx.InjectCtx;
+import net.simpleframework.ctx.permission.IPermissionConst;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 import net.simpleframework.module.log.ILogContext;
 import net.simpleframework.mvc.PageParameter;
@@ -24,6 +25,11 @@ public abstract class AbstractLogPage extends OneTableTemplatePage implements IL
 			return null;
 		}
 		return getCacheBean(pp, beanService, getBeanIdParameter(pp));
+	}
+
+	@Override
+	public String getRole(final PageParameter pp) {
+		return IPermissionConst.ROLE_MANAGER;
 	}
 
 	protected IDbBeanService<?> getBeanService() {

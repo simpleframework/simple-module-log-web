@@ -54,7 +54,7 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 				// .addColumn(new TablePagerColumn(COL_FILESIZE,
 				// $m("DownloadLogPage.4"), 80))
 				.addColumn(TablePagerColumn.DESCRIPTION());
-		if (pp.getLogin().isManager()) {
+		if (isRoleMember(pp)) {
 			tablePager.addColumn(TablePagerColumn.OPE().setWidth(60));
 		}
 		addDeleteAjaxRequest(pp, "DownloadLogPage_delete");

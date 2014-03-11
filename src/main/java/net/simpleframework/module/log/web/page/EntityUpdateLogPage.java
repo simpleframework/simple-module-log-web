@@ -51,7 +51,8 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	protected void onForward(final PageParameter pp) {
 		super.onForward(pp);
 
-		addTablePagerBean(pp, "EntityUpdateLogPage_tbl", EntityFieldTable.class);
+		addTablePagerBean(pp, "EntityUpdateLogPage_tbl", EntityFieldTable.class).setShowCheckbox(
+				isRoleMember(pp));
 
 		// delete
 		addDeleteAjaxRequest(pp, "EntityUpdateLogPage_delete");
@@ -67,8 +68,10 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 				.addColumn(setColumnProperties(newColumn(COL_CREATEDATE)))
 				.addColumn(setColumnProperties(newColumn(COL_FROMVAL)))
 				.addColumn(setColumnProperties(newColumn(COL_TOVAL)))
-				.addColumn(setColumnProperties(newColumn(COL_IP)))
-				.addColumn(TablePagerColumn.OPE().setWidth(60));
+				.addColumn(setColumnProperties(newColumn(COL_IP)));
+		if (isRoleMember(pp)) {
+			tablePager.addColumn(TablePagerColumn.OPE().setWidth(60));
+		}
 		return tablePager;
 	}
 
@@ -167,11 +170,14 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 
 	@Override
 	public ElementList getLeftElements(final PageParameter pp) {
-		return ElementList
-				.of(LinkButton.closeBtn(),
-						SpanElement.SPACE,
-						LinkButton.deleteBtn().setOnclick(
-								"$Actions['EntityUpdateLogPage_tbl'].doAct('EntityUpdateLogPage_delete');"));
+		final ElementList el = ElementList.of(LinkButton.closeBtn());
+		if (isRoleMember(pp)) {
+			el.append(
+					SpanElement.SPACE,
+					LinkButton.deleteBtn().setOnclick(
+							"$Actions['EntityUpdateLogPage_tbl'].doAct('EntityUpdateLogPage_delete');"));
+		}
+		return el;
 	}
 
 	private static Option OPTION_1 = new Option(COL_VALNAME, $m("EntityUpdateLogPage.7"));
