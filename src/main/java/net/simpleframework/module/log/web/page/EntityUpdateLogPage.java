@@ -10,6 +10,7 @@ import net.simpleframework.ado.bean.IIdBeanAware;
 import net.simpleframework.ado.db.DbTableColumn;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
+import net.simpleframework.common.Convert;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.common.coll.KVMap;
 import net.simpleframework.ctx.trans.Transaction;
@@ -107,14 +108,31 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		return new JavascriptForward("$Actions['EntityUpdateLogPage_tbl']();");
 	}
 
+	protected String convertVal(final String valName, final DbTableColumn oCol, final String oVal) {
+		if (oVal == null) {
+			return "[NULL]";
+		}
+		final Class<?> colClass = oCol.getPropertyClass();
+		if (boolean.class.isAssignableFrom(colClass) || Boolean.class.isAssignableFrom(colClass)) {
+			return Convert.toBool(oVal) ? $m("EntityUpdateLogPage.9") : $m("EntityUpdateLogPage.10");
+		} else if (Enum.class.isAssignableFrom(colClass)) {
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			final Enum e = Convert.toEnum((Class<Enum>) colClass, oVal);
+			if (e != null) {
+				return e.toString();
+			}
+		}
+		return oVal;
+	}
+
 	protected Map<String, Object> getRowData(final ComponentParameter cp, final EntityUpdateLog field) {
 		final KVMap kv = new KVMap();
 		final String valName = field.getValName();
 		final DbTableColumn col = getTableColumns(cp, valName);
 		kv.put(COL_VALNAME, col != null ? col.getText() : valName);
 		final String fromVal = field.getFromVal(), toVal = field.getToVal();
-		kv.put(COL_FROMVAL, new SpanElement(fromVal == null ? "[NULL]" : fromVal).setColor("#700"));
-		kv.put(COL_TOVAL, new SpanElement(toVal == null ? "[NULL]" : toVal).setColor("#070"));
+		kv.put(COL_FROMVAL, new SpanElement(convertVal(valName, col, fromVal)).setColor("#700"));
+		kv.put(COL_TOVAL, new SpanElement(convertVal(valName, col, toVal)).setColor("#070"));
 		kv.put(COL_USERTEXT, TemplateUtils.toIconUser(cp, field.getUserId(), field.getUserText()));
 		kv.put(COL_CREATEDATE, field.getCreateDate());
 		kv.put(COL_IP, field.getIp());
@@ -135,11 +153,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		if (COL_VALNAME.equals(g)) {
 			final DbTableColumn oCol = getTableColumns(pp, (String) groupVal);
 			if (oCol != null) {
-				String txt = oCol.getText();
-				if (!txt.equals(groupVal)) {
-					txt += " - " + groupVal;
-				}
-				return txt;
+				return new SpanElement(oCol.getText()).setTitle(Convert.toString(groupVal));
 			}
 		} else if (COL_OPID.equals(g)) {
 			return opIdCache.get(groupVal);
@@ -185,7 +199,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
-		pp.putParameter(G, COL_VALNAME);
+		pp.putParameter(G, COL_OPID);
 
 		return ElementList.of(createGroupElement(pp, "EntityUpdateLogPage_tbl", OPTION_1, OPTION_2));
 	}
