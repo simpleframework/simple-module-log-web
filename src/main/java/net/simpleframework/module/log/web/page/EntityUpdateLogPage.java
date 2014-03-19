@@ -112,14 +112,17 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		if (oVal == null) {
 			return "[NULL]";
 		}
-		final Class<?> colClass = oCol.getPropertyClass();
-		if (boolean.class.isAssignableFrom(colClass) || Boolean.class.isAssignableFrom(colClass)) {
-			return Convert.toBool(oVal) ? $m("EntityUpdateLogPage.9") : $m("EntityUpdateLogPage.10");
-		} else if (Enum.class.isAssignableFrom(colClass)) {
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			final Enum e = Convert.toEnum((Class<Enum>) colClass, oVal);
-			if (e != null) {
-				return e.toString();
+		if (oCol != null) {
+			final Class<?> colClass = oCol.getPropertyClass();
+			if (boolean.class.isAssignableFrom(colClass) || Boolean.class.isAssignableFrom(colClass)) {
+				return Convert.toBool(oVal) ? $m("EntityUpdateLogPage.9")
+						: $m("EntityUpdateLogPage.10");
+			} else if (Enum.class.isAssignableFrom(colClass)) {
+				@SuppressWarnings({ "unchecked", "rawtypes" })
+				final Enum e = Convert.toEnum((Class<Enum>) colClass, oVal);
+				if (e != null) {
+					return e.toString();
+				}
 			}
 		}
 		return oVal;
