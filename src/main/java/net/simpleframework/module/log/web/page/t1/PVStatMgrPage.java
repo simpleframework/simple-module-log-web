@@ -97,7 +97,7 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 			data = context.getPVLogService().getMonthStat(_getYear(pp));
 		} else {
 			addCalendarBean(pp, "PVStatMgrPage_cal").setClearButton(false)
-					.setCloseCallback(
+					.setJsCloseCallback(
 							"$Actions.loc('" + url(PVStatMgrPage.class)
 									+ "?date=' + date.format('yyyy-MM-dd'))");
 
