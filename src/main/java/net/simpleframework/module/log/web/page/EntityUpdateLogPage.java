@@ -102,9 +102,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	@Transaction(context = ILogContext.class)
 	public IForward doDelete(final ComponentParameter cp) {
 		final Object[] ids = StringUtils.split(cp.getParameter("id"));
-		if (ids != null) {
-			logContext.getEntityUpdateLogService().delete(ids);
-		}
+		logContext.getEntityUpdateLogService().delete(ids);
 		return new JavascriptForward("$Actions['EntityUpdateLogPage_tbl']();");
 	}
 

@@ -71,9 +71,7 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 	@Transaction(context = ILogContext.class)
 	public IForward doDelete(final ComponentParameter cp) {
 		final Object[] ids = StringUtils.split(cp.getParameter("id"));
-		if (ids != null) {
-			getBeanService().delete(ids);
-		}
+		getBeanService().delete(ids);
 		return new JavascriptForward("$Actions['AbstractLogMgrPage_tbl']();");
 	}
 
