@@ -103,8 +103,8 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 
 			final String[] arr = StringUtils.split(Convert.toDateString(_getDate(pp), "yyyy-MM-dd"),
 					"-");
-			data = logContext.getPVLogService().getHourStat(Convert.toInt(arr[0]), Convert.toInt(arr[1]),
-					Convert.toInt(arr[2]));
+			data = logContext.getPVLogService().getHourStat(Convert.toInt(arr[0]),
+					Convert.toInt(arr[1]), Convert.toInt(arr[2]));
 		}
 
 		if (data != null) {
