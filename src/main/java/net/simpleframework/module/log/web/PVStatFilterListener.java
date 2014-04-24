@@ -43,7 +43,7 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 	final Map<String, PVStat> stats = new ConcurrentHashMap<String, PVStat>();
 
 	void updateStats() {
-		final IPVLogService lservice = context.getPVLogService();
+		final IPVLogService lservice = logContext.getPVLogService();
 		for (final Map.Entry<String, PVStat> e : stats.entrySet()) {
 			final String[] arr = StringUtils.split(e.getKey(), "-");
 			final PVLog log = lservice.getPVLog(Convert.toInt(arr[0]), Convert.toInt(arr[1]),

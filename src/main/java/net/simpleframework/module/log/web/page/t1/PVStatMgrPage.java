@@ -92,9 +92,9 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 		hc1.getTooltip().setHeaderFormat("{point.key}<br/>");
 
 		if (d) {
-			data = context.getPVLogService().getDayStat(_getYear(pp), _getMonth(pp));
+			data = logContext.getPVLogService().getDayStat(_getYear(pp), _getMonth(pp));
 		} else if (m) {
-			data = context.getPVLogService().getMonthStat(_getYear(pp));
+			data = logContext.getPVLogService().getMonthStat(_getYear(pp));
 		} else {
 			addCalendarBean(pp, "PVStatMgrPage_cal").setClearButton(false)
 					.setJsCloseCallback(
@@ -103,7 +103,7 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 
 			final String[] arr = StringUtils.split(Convert.toDateString(_getDate(pp), "yyyy-MM-dd"),
 					"-");
-			data = context.getPVLogService().getHourStat(Convert.toInt(arr[0]), Convert.toInt(arr[1]),
+			data = logContext.getPVLogService().getHourStat(Convert.toInt(arr[0]), Convert.toInt(arr[1]),
 					Convert.toInt(arr[2]));
 		}
 

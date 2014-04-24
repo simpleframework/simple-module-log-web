@@ -54,7 +54,7 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 
 	@Override
 	protected IDbBeanService<?> getBeanService() {
-		return context.getLoginLogService();
+		return logContext.getLoginLogService();
 	}
 
 	@Override

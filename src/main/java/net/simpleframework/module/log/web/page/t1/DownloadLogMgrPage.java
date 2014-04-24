@@ -60,7 +60,7 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 
 	@Override
 	protected IDownloadLogService getBeanService() {
-		return context.getDownloadLogService();
+		return logContext.getDownloadLogService();
 	}
 
 	@Override

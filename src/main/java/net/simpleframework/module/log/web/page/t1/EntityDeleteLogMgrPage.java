@@ -64,7 +64,7 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 
 	@Override
 	protected IDbBeanService<?> getBeanService() {
-		return context.getEntityDeleteLogService();
+		return logContext.getEntityDeleteLogService();
 	}
 
 	private static Option OPTION_TBLNAME = new Option(COL_TBLNAME, $m("EntityDeleteLogMgrPage.5"));
