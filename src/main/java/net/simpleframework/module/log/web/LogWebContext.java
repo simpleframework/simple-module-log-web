@@ -21,7 +21,7 @@ public class LogWebContext extends LogContext implements IMVCContextVar {
 	public void onInit(final IApplicationContext application) throws Exception {
 		super.onInit(application);
 
-		// mvcContext.addFilterListener(sListener = new PVStatFilterListener());
+		mvcContext.addFilterListener(sListener = new PVStatFilterListener());
 	}
 
 	private PVStatFilterListener sListener;

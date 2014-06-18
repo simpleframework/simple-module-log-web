@@ -67,32 +67,34 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 			throws IOException {
 		if (rRequest.isHttpRequest()) {
 			final String dk = Convert.toDateString(new Date(), "yyyy-MM-dd-HH");
-			PVStat stat = stats.get(dk);
-			if (stat == null) {
-				updateStats();
-				stats.put(dk, stat = new PVStat());
-			}
-
-			stat.pv++;
-			stat.ip.add(rRequest.getRemoteAddr());
-			Object userId;
-			final String sessionId = rRequest.getSessionId();
-			if ((userId = rRequest.getLoginId()) != null) {
-				if (!stat.uv.contains(sessionId)) {
-					stat.uv.add(Convert.toString(userId));
+			synchronized (stats) {
+				PVStat stat = stats.get(dk);
+				if (stat == null) {
+					updateStats();
+					stats.put(dk, stat = new PVStat());
 				}
-			} else {
-				stat.uv.add(sessionId);
-			}
 
-			final int pt = Convert.toInt(rRequest.getSessionAttr(IMVCConst.PAGELOAD_TIME));
-			stat.averageTime += pt;
+				stat.pv++;
+				stat.ip.add(rRequest.getRemoteAddr());
+				Object userId;
+				final String sessionId = rRequest.getSessionId();
+				if ((userId = rRequest.getLoginId()) != null) {
+					if (!stat.uv.contains(sessionId)) {
+						stat.uv.add(Convert.toString(userId));
+					}
+				} else {
+					stat.uv.add(sessionId);
+				}
 
-			if (stat.minTime == 0 || pt < stat.minTime) {
-				stat.minTime = pt;
-			}
-			if (stat.maxTime == 0 || pt > stat.maxTime) {
-				stat.maxTime = pt;
+				final int pt = Convert.toInt(rRequest.getSessionAttr(IMVCConst.PAGELOAD_TIME));
+				stat.averageTime += pt;
+
+				if (stat.minTime == 0 || pt < stat.minTime) {
+					stat.minTime = pt;
+				}
+				if (stat.maxTime == 0 || pt > stat.maxTime) {
+					stat.maxTime = pt;
+				}
 			}
 		}
 		return EFilterResult.SUCCESS;
