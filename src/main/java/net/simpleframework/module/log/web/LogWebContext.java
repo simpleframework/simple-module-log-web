@@ -1,6 +1,7 @@
 package net.simpleframework.module.log.web;
 
 import static net.simpleframework.common.I18n.$m;
+import net.simpleframework.common.Convert;
 import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.ctx.ModuleFunctions;
@@ -21,7 +22,9 @@ public class LogWebContext extends LogContext implements IMVCContextVar {
 	public void onInit(final IApplicationContext application) throws Exception {
 		super.onInit(application);
 
-		mvcContext.addFilterListener(sListener = new PVStatFilterListener());
+		if (Convert.toBool(application.getContextSettings().getProperty("mvc.pvstat"))) {
+			mvcContext.addFilterListener(sListener = new PVStatFilterListener());
+		}
 	}
 
 	private PVStatFilterListener sListener;
