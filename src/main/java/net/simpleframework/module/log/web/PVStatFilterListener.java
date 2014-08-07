@@ -52,10 +52,12 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 			log.setPv(log.getPv() + _stat.pv);
 			log.setUv(log.getUv() + _stat.uv.size());
 			log.setIp(log.getIp() + _stat.ip.size());
-			if (_stat.pv > 1) {
-				log.setAverageTime(_stat.averageTime / (_stat.pv - 1));
-				log.setMinTime(_stat.minTime);
-				log.setMaxTime(_stat.maxTime);
+			if (_stat.pv > 0) {
+				final int averageTime = log.getAverageTime();
+				final int _averageTime = _stat.averageTime / _stat.pv;
+				log.setAverageTime(averageTime == 0 ? _averageTime : (averageTime + _averageTime) / 2);
+				log.setMinTime(Math.min(log.getMinTime(), _stat.minTime));
+				log.setMaxTime(Math.max(log.getMaxTime(), _stat.maxTime));
 			}
 			lservice.update(log);
 		}
