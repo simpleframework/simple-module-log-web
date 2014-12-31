@@ -7,6 +7,7 @@ import net.simpleframework.ctx.Module;
 import net.simpleframework.ctx.ModuleFunctions;
 import net.simpleframework.module.log.impl.LogContext;
 import net.simpleframework.module.log.web.page.t1.LoginLogMgrPage;
+import net.simpleframework.module.log.web.page.t1.PVStatMgrPage;
 import net.simpleframework.mvc.IMVCContextVar;
 import net.simpleframework.mvc.ctx.WebModuleFunction;
 
@@ -44,10 +45,14 @@ public class LogWebContext extends LogContext implements IMVCContextVar {
 
 	@Override
 	protected ModuleFunctions getFunctions() {
-		return ModuleFunctions.of(FUNC_LOGINLOG_MGR);
+		return ModuleFunctions.of(FUNC_LOGINLOG_MGR, FUNC_PVSTAT);
 	}
 
 	public static WebModuleFunction FUNC_LOGINLOG_MGR = (WebModuleFunction) new WebModuleFunction(
 			LoginLogMgrPage.class).setName(MODULE_NAME + "-LoginLogMgrPage").setText(
 			$m("LogContext.0"));
+
+	public static WebModuleFunction FUNC_PVSTAT = (WebModuleFunction) new WebModuleFunction(
+			PVStatMgrPage.class).setName(MODULE_NAME + "-PVStatMgrPage")
+			.setText($m("LogWebContext.0"));
 }
