@@ -48,11 +48,11 @@ public class LogWebContext extends LogContext implements IMVCContextVar {
 		return ModuleFunctions.of(FUNC_LOGINLOG_MGR, FUNC_PVSTAT);
 	}
 
-	public static WebModuleFunction FUNC_LOGINLOG_MGR = (WebModuleFunction) new WebModuleFunction(
+	public WebModuleFunction FUNC_LOGINLOG_MGR = (WebModuleFunction) new WebModuleFunction(this,
 			LoginLogMgrPage.class).setName(MODULE_NAME + "-LoginLogMgrPage").setText(
 			$m("LogContext.0"));
 
-	public static WebModuleFunction FUNC_PVSTAT = (WebModuleFunction) new WebModuleFunction(
+	public WebModuleFunction FUNC_PVSTAT = (WebModuleFunction) new WebModuleFunction(this,
 			PVStatMgrPage.class).setName(MODULE_NAME + "-PVStatMgrPage")
 			.setText($m("LogWebContext.0"));
 }
