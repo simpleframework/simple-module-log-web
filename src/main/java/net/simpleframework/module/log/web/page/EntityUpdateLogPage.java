@@ -20,7 +20,6 @@ import net.simpleframework.mvc.IForward;
 import net.simpleframework.mvc.JavascriptForward;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
-import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.common.element.LinkButton;
 import net.simpleframework.mvc.common.element.Option;
@@ -79,10 +78,9 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	protected TablePagerColumn setColumnProperties(final TablePagerColumn col) {
 		final String name = col.getColumnName();
 		if (COL_VALNAME.equals(name)) {
-			col.setColumnText($m("EntityUpdateLogPage.1")).setWidth(100).setTextAlign(ETextAlign.left)
-					.setFilter(false);
+			col.setColumnText($m("EntityUpdateLogPage.1")).setWidth(100).setFilter(false);
 		} else if (COL_USERTEXT.equals(name)) {
-			col.setColumnText($m("EntityUpdateLogPage.4")).setWidth(100).setTextAlign(ETextAlign.left);
+			col.setColumnText($m("EntityUpdateLogPage.4")).setWidth(100);
 		} else if (COL_CREATEDATE.equals(name)) {
 			col.setColumnText($m("EntityUpdateLogPage.6")).setWidth(115).setPropertyClass(Date.class);
 		} else if (COL_FROMVAL.equals(name)) {

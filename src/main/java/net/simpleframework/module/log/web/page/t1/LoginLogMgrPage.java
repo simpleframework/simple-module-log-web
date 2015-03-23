@@ -13,7 +13,6 @@ import net.simpleframework.module.log.LoginLog;
 import net.simpleframework.mvc.PageMapping;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
-import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.common.element.SpanElement;
 import net.simpleframework.mvc.component.ComponentParameter;
@@ -38,9 +37,7 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, LoginLogTbl.class);
 		tablePager
-				.addColumn(
-						new TablePagerColumn(COL_USERTEXT, $m("LoginLogMgrPage.1"), 120)
-								.setTextAlign(ETextAlign.left))
+				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("LoginLogMgrPage.1"), 120))
 				.addColumn(
 						new TablePagerColumn(COL_CREATEDATE, $m("LoginLogMgrPage.2"), 120)
 								.setPropertyClass(Date.class))

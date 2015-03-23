@@ -12,7 +12,6 @@ import net.simpleframework.module.log.IDownloadLogService;
 import net.simpleframework.mvc.PageMapping;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
-import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.component.ComponentParameter;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
@@ -38,21 +37,15 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, DownloadLogTbl.class);
 		tablePager
-				.addColumn(
-						new TablePagerColumn(COL_USERTEXT, $m("DownloadLogMgrPage.2"), 100)
-								.setTextAlign(ETextAlign.left))
+				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("DownloadLogMgrPage.2"), 100))
 				.addColumn(
 						new TablePagerColumn(COL_CREATEDATE, $m("DownloadLogPage.1"), 120)
 								.setPropertyClass(Date.class))
 				.addColumn(
 						new TablePagerColumn(COL_LASTUPDATE, $m("DownloadLogPage.5"), 120)
 								.setPropertyClass(Date.class))
-				.addColumn(
-						new TablePagerColumn(COL_FILESIZE, $m("DownloadLogPage.4"), 70)
-								.setTextAlign(ETextAlign.left))
-				.addColumn(
-						new TablePagerColumn(COL_FILETYPE, $m("DownloadLogMgrPage.1"), 70)
-								.setTextAlign(ETextAlign.left))
+				.addColumn(new TablePagerColumn(COL_FILESIZE, $m("DownloadLogPage.4"), 70))
+				.addColumn(new TablePagerColumn(COL_FILETYPE, $m("DownloadLogMgrPage.1"), 70))
 				.addColumn(new TablePagerColumn(COL_IP, $m("DownloadLogPage.2"), 120))
 				.addColumn(TablePagerColumn.DESCRIPTION())
 				.addColumn(TablePagerColumn.OPE().setWidth(80));

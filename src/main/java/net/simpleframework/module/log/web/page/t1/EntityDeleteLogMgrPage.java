@@ -14,7 +14,6 @@ import net.simpleframework.module.log.web.page.EntityUpdateLogPage;
 import net.simpleframework.mvc.PageMapping;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
-import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.common.element.Option;
 import net.simpleframework.mvc.common.element.SpanElement;
@@ -43,15 +42,11 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, DeleteLogTbl.class);
 		tablePager
-				.addColumn(
-						new TablePagerColumn(COL_USERTEXT, $m("EntityDeleteLogMgrPage.2"), 120)
-								.setTextAlign(ETextAlign.left))
+				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("EntityDeleteLogMgrPage.2"), 120))
 				.addColumn(
 						new TablePagerColumn(COL_CREATEDATE, $m("EntityDeleteLogMgrPage.3"), 120)
 								.setPropertyClass(Date.class))
-				.addColumn(
-						new TablePagerColumn(COL_TBLNAME, $m("EntityDeleteLogMgrPage.1"), 180)
-								.setTextAlign(ETextAlign.left))
+				.addColumn(new TablePagerColumn(COL_TBLNAME, $m("EntityDeleteLogMgrPage.1"), 180))
 				.addColumn(new TablePagerColumn(COL_IP, $m("EntityDeleteLogMgrPage.4"), 120))
 				.addColumn(TablePagerColumn.DESCRIPTION())
 				.addColumn(TablePagerColumn.OPE().setWidth(140));
