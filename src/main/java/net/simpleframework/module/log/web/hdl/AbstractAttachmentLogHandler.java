@@ -24,7 +24,6 @@ import net.simpleframework.mvc.common.element.LinkElement;
 import net.simpleframework.mvc.component.ComponentParameter;
 import net.simpleframework.mvc.component.base.ajaxrequest.AjaxRequestBean;
 import net.simpleframework.mvc.component.ext.attachments.AttachmentUtils;
-import net.simpleframework.mvc.component.ui.window.WindowBean;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -83,10 +82,10 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 		protected void onForward(final PageParameter pp) {
 			super.onForward(pp);
 
-			pp.addComponentBean("AttachmentTooltipExPage_logPage", AjaxRequestBean.class)
-					.setUrlForward(AbstractMVCPage.url(AttachmentLogPage.class));
-			pp.addComponentBean("AttachmentTooltipExPage_logWin", WindowBean.class)
-					.setContentRef("AttachmentTooltipExPage_logPage").setHeight(480).setWidth(800);
+			final AjaxRequestBean ajaxRequest = addAjaxRequest(pp, "AttachmentTooltipExPage_logPage",
+					AttachmentLogPage.class);
+			addWindowBean(pp, "AttachmentTooltipExPage_logWin", ajaxRequest).setHeight(480).setWidth(
+					800);
 		}
 
 		@SuppressWarnings("unchecked")

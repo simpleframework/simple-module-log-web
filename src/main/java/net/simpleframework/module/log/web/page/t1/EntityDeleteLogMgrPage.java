@@ -18,11 +18,11 @@ import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.common.element.Option;
 import net.simpleframework.mvc.common.element.SpanElement;
 import net.simpleframework.mvc.component.ComponentParameter;
+import net.simpleframework.mvc.component.base.ajaxrequest.AjaxRequestBean;
 import net.simpleframework.mvc.component.ui.pager.AbstractTablePagerSchema;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumns;
-import net.simpleframework.mvc.component.ui.window.WindowBean;
 import net.simpleframework.mvc.template.TemplateUtils;
 
 /**
@@ -52,9 +52,9 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 				.addColumn(TablePagerColumn.OPE().setWidth(140));
 
 		// 修改日志
-		addAjaxRequest(pp, "EntityDeleteLogMgrPage_logPage", _UpdateLogPage.class);
-		addComponentBean(pp, "EntityDeleteLogMgrPage_logWin", WindowBean.class)
-				.setContentRef("EntityDeleteLogMgrPage_logPage").setHeight(600).setWidth(960);
+		final AjaxRequestBean ajaxRequest = addAjaxRequest(pp, "EntityDeleteLogMgrPage_logPage",
+				_UpdateLogPage.class);
+		addWindowBean(pp, "EntityDeleteLogMgrPage_logWin", ajaxRequest).setHeight(600).setWidth(960);
 	}
 
 	@Override
