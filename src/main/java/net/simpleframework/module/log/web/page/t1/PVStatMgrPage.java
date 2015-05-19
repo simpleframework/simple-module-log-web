@@ -125,7 +125,7 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 			final int k = i + 1;
 			final PVLog log = data.get(k);
 			final Number val = (Number) BeanUtils.getProperty(log, property);
-			h.addData(new DataObj(String.valueOf(k), log == null ? 0 : val.intValue() * 10));
+			h.addData(new DataObj(String.valueOf(k), log == null ? 0 : val.intValue()));
 		}
 		return h;
 	}
