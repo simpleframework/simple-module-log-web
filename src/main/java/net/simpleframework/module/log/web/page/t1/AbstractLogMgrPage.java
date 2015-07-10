@@ -38,7 +38,7 @@ import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
 public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implements ILogConst,
 		ILogContextAware {
 	@Override
-	protected void onForward(final PageParameter pp) {
+	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
 		pp.addImportCSS(AbstractLogMgrPage.class, "/log.css");

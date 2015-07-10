@@ -32,7 +32,7 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 	public static final String COL_LOGOUTDATE = "logoutDate";
 
 	@Override
-	protected void onForward(final PageParameter pp) {
+	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, LoginLogTbl.class);

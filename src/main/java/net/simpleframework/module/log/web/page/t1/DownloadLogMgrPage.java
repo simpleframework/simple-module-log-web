@@ -32,7 +32,7 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 	public static final String COL_FILETYPE = "filetype";
 
 	@Override
-	protected void onForward(final PageParameter pp) {
+	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, DownloadLogTbl.class);

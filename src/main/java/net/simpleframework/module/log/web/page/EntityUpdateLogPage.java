@@ -48,7 +48,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	public static final String COL_OPID = "opId";
 
 	@Override
-	protected void onForward(final PageParameter pp) {
+	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
 		addTablePagerBean(pp, "EntityUpdateLogPage_tbl", EntityFieldTable.class).setShowCheckbox(

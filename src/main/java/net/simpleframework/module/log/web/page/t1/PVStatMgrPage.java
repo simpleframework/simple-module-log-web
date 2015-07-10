@@ -42,7 +42,7 @@ import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
 public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextAware {
 
 	@Override
-	protected void onForward(final PageParameter pp) {
+	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 		pp.addImportCSS(PVStatMgrPage.class, "/log.css");
 

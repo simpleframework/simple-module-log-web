@@ -37,7 +37,7 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 	public static final String COL_LASTUPDATE = "lastUpdate";
 
 	@Override
-	protected void onForward(final PageParameter pp) {
+	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, "DownloadLogPage_tbl",

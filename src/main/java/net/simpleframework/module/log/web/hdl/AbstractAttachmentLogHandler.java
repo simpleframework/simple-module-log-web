@@ -79,7 +79,7 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 	public static class AttachmentTooltipExPage extends AttachmentTooltipPage {
 
 		@Override
-		protected void onForward(final PageParameter pp) {
+		protected void onForward(final PageParameter pp) throws Exception {
 			super.onForward(pp);
 
 			final AjaxRequestBean ajaxRequest = addAjaxRequest(pp, "AttachmentTooltipExPage_logPage",
