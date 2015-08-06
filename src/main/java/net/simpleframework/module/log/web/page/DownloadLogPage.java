@@ -2,7 +2,6 @@ package net.simpleframework.module.log.web.page;
 
 import static net.simpleframework.common.I18n.$m;
 
-import java.util.Date;
 import java.util.Map;
 
 import net.simpleframework.ado.bean.IIdBeanAware;
@@ -42,15 +41,10 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, "DownloadLogPage_tbl",
 				DownloadLogTable.class);
-		tablePager
-				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("DownloadLogPage.0"), 100))
-				.addColumn(
-						new TablePagerColumn(COL_CREATEDATE, $m("DownloadLogPage.1"), 115)
-								.setPropertyClass(Date.class))
+		tablePager.addColumn(new TablePagerColumn(COL_USERTEXT, $m("DownloadLogPage.0"), 100))
+				.addColumn(TablePagerColumn.DATE(COL_CREATEDATE, $m("DownloadLogPage.1")))
 				.addColumn(new TablePagerColumn(COL_IP, $m("DownloadLogPage.2"), 100))
-				.addColumn(
-						new TablePagerColumn(COL_LASTUPDATE, $m("DownloadLogPage.5"), 115)
-								.setPropertyClass(Date.class))
+				.addColumn(TablePagerColumn.DATE(COL_LASTUPDATE, $m("DownloadLogPage.5")))
 				// .addColumn(new TablePagerColumn(COL_FILESIZE,
 				// $m("DownloadLogPage.4"), 80))
 				.addColumn(TablePagerColumn.DESCRIPTION());

@@ -2,7 +2,6 @@ package net.simpleframework.module.log.web.page.t1;
 
 import static net.simpleframework.common.I18n.$m;
 
-import java.util.Date;
 import java.util.Map;
 
 import net.simpleframework.common.FileUtils;
@@ -36,14 +35,9 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, DownloadLogTbl.class);
-		tablePager
-				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("DownloadLogMgrPage.2"), 100))
-				.addColumn(
-						new TablePagerColumn(COL_CREATEDATE, $m("DownloadLogPage.1"), 120)
-								.setPropertyClass(Date.class))
-				.addColumn(
-						new TablePagerColumn(COL_LASTUPDATE, $m("DownloadLogPage.5"), 120)
-								.setPropertyClass(Date.class))
+		tablePager.addColumn(new TablePagerColumn(COL_USERTEXT, $m("DownloadLogMgrPage.2"), 100))
+				.addColumn(TablePagerColumn.DATE(COL_CREATEDATE, $m("DownloadLogPage.1")))
+				.addColumn(TablePagerColumn.DATE(COL_LASTUPDATE, $m("DownloadLogPage.5")))
 				.addColumn(new TablePagerColumn(COL_FILESIZE, $m("DownloadLogPage.4"), 70))
 				.addColumn(new TablePagerColumn(COL_FILETYPE, $m("DownloadLogMgrPage.1"), 70))
 				.addColumn(new TablePagerColumn(COL_IP, $m("DownloadLogPage.2"), 120))

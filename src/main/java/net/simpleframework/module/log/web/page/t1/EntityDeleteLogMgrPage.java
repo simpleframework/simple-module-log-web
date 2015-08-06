@@ -2,7 +2,6 @@ package net.simpleframework.module.log.web.page.t1;
 
 import static net.simpleframework.common.I18n.$m;
 
-import java.util.Date;
 import java.util.Map;
 
 import net.simpleframework.common.ID;
@@ -41,11 +40,8 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, DeleteLogTbl.class);
-		tablePager
-				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("EntityDeleteLogMgrPage.2"), 120))
-				.addColumn(
-						new TablePagerColumn(COL_CREATEDATE, $m("EntityDeleteLogMgrPage.3"), 120)
-								.setPropertyClass(Date.class))
+		tablePager.addColumn(new TablePagerColumn(COL_USERTEXT, $m("EntityDeleteLogMgrPage.2"), 120))
+				.addColumn(TablePagerColumn.DATE(COL_CREATEDATE, $m("EntityDeleteLogMgrPage.3")))
 				.addColumn(new TablePagerColumn(COL_TBLNAME, $m("EntityDeleteLogMgrPage.1"), 180))
 				.addColumn(new TablePagerColumn(COL_IP, $m("EntityDeleteLogMgrPage.4"), 120))
 				.addColumn(TablePagerColumn.DESCRIPTION())

@@ -2,7 +2,6 @@ package net.simpleframework.module.log.web.page.t1;
 
 import static net.simpleframework.common.I18n.$m;
 
-import java.util.Date;
 import java.util.Map;
 
 import net.simpleframework.common.ID;
@@ -36,14 +35,9 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, LoginLogTbl.class);
-		tablePager
-				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("LoginLogMgrPage.1"), 120))
-				.addColumn(
-						new TablePagerColumn(COL_CREATEDATE, $m("LoginLogMgrPage.2"), 120)
-								.setPropertyClass(Date.class))
-				.addColumn(
-						new TablePagerColumn(COL_LOGOUTDATE, $m("LoginLogMgrPage.4"), 120)
-								.setPropertyClass(Date.class))
+		tablePager.addColumn(new TablePagerColumn(COL_USERTEXT, $m("LoginLogMgrPage.1"), 120))
+				.addColumn(TablePagerColumn.DATE(COL_CREATEDATE, $m("LoginLogMgrPage.2")))
+				.addColumn(TablePagerColumn.DATE(COL_LOGOUTDATE, $m("LoginLogMgrPage.4")))
 				.addColumn(new TablePagerColumn(COL_IP, $m("LoginLogMgrPage.3"), 120))
 				.addColumn(TablePagerColumn.DESCRIPTION())
 				.addColumn(TablePagerColumn.OPE().setWidth(80));
