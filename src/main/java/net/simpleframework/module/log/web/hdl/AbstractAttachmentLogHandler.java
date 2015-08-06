@@ -19,6 +19,7 @@ import net.simpleframework.mvc.AbstractMVCPage;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.DownloadUtils;
 import net.simpleframework.mvc.common.IDownloadHandler;
+import net.simpleframework.mvc.common.element.JS;
 import net.simpleframework.mvc.common.element.LinkButton;
 import net.simpleframework.mvc.common.element.LinkElement;
 import net.simpleframework.mvc.component.ComponentParameter;
@@ -92,9 +93,9 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 		@Override
 		protected Object getTopic(final PageParameter pp, final AttachmentFile attachment) {
 			final ComponentParameter cp = AttachmentUtils.get(pp);
-			return new LinkElement(super.getTopic(pp, attachment)).setOnclick("$Actions.loc('"
-					+ DownloadUtils.getDownloadHref(attachment, (Class<? extends IDownloadHandler>) cp
-							.getComponentHandler().getClass()) + "');");
+			return new LinkElement(super.getTopic(pp, attachment)).setOnclick(JS.loc(DownloadUtils
+					.getDownloadHref(attachment, (Class<? extends IDownloadHandler>) cp
+							.getComponentHandler().getClass())));
 		}
 
 		@Override
