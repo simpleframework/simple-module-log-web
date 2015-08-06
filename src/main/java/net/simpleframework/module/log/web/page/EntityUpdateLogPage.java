@@ -130,8 +130,8 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		final DbTableColumn col = getTableColumns(cp, valName);
 		kv.put(COL_VALNAME, col != null ? col.getText() : valName);
 		final String fromVal = field.getFromVal(), toVal = field.getToVal();
-		kv.put(COL_FROMVAL, new SpanElement(convertVal(valName, col, fromVal)).setColor("#700"));
-		kv.put(COL_TOVAL, new SpanElement(convertVal(valName, col, toVal)).setColor("#070"));
+		kv.put(COL_FROMVAL, SpanElement.color600(convertVal(valName, col, fromVal)));
+		kv.put(COL_TOVAL, SpanElement.color060(convertVal(valName, col, toVal)));
 		kv.put(COL_USERTEXT, TemplateUtils.toIconUser(cp, field.getUserId(), field.getUserText()));
 		kv.put(COL_CREATEDATE, field.getCreateDate());
 		kv.put(COL_IP, field.getIp());
