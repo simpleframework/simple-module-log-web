@@ -41,8 +41,7 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 				.addColumn(new TablePagerColumn(COL_FILESIZE, $m("DownloadLogPage.4"), 70))
 				.addColumn(new TablePagerColumn(COL_FILETYPE, $m("DownloadLogMgrPage.1"), 70))
 				.addColumn(new TablePagerColumn(COL_IP, $m("DownloadLogPage.2"), 120))
-				.addColumn(TablePagerColumn.DESCRIPTION())
-				.addColumn(TablePagerColumn.OPE().setWidth(80));
+				.addColumn(TablePagerColumn.DESCRIPTION()).addColumn(TablePagerColumn.OPE(80));
 	}
 
 	@Override

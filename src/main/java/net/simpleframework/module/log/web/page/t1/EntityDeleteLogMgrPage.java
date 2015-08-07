@@ -44,8 +44,7 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 				.addColumn(TablePagerColumn.DATE(COL_CREATEDATE, $m("EntityDeleteLogMgrPage.3")))
 				.addColumn(new TablePagerColumn(COL_TBLNAME, $m("EntityDeleteLogMgrPage.1"), 180))
 				.addColumn(new TablePagerColumn(COL_IP, $m("EntityDeleteLogMgrPage.4"), 120))
-				.addColumn(TablePagerColumn.DESCRIPTION())
-				.addColumn(TablePagerColumn.OPE().setWidth(140));
+				.addColumn(TablePagerColumn.DESCRIPTION()).addColumn(TablePagerColumn.OPE(140));
 
 		// 修改日志
 		final AjaxRequestBean ajaxRequest = addAjaxRequest(pp, "EntityDeleteLogMgrPage_logPage",

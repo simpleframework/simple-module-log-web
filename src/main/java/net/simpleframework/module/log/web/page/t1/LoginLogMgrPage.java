@@ -39,8 +39,7 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 				.addColumn(TablePagerColumn.DATE(COL_CREATEDATE, $m("LoginLogMgrPage.2")))
 				.addColumn(TablePagerColumn.DATE(COL_LOGOUTDATE, $m("LoginLogMgrPage.4")))
 				.addColumn(new TablePagerColumn(COL_IP, $m("LoginLogMgrPage.3"), 120))
-				.addColumn(TablePagerColumn.DESCRIPTION())
-				.addColumn(TablePagerColumn.OPE().setWidth(80));
+				.addColumn(TablePagerColumn.DESCRIPTION()).addColumn(TablePagerColumn.OPE(80));
 	}
 
 	@Override

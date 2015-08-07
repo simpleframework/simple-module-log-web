@@ -70,7 +70,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 				.addColumn(setColumnProperties(newColumn(COL_TOVAL)))
 				.addColumn(setColumnProperties(newColumn(COL_IP)));
 		if (isRoleMember(pp)) {
-			tablePager.addColumn(TablePagerColumn.OPE().setWidth(60));
+			tablePager.addColumn(TablePagerColumn.OPE(60));
 		}
 		return tablePager;
 	}
