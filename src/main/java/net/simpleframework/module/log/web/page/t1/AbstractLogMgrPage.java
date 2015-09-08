@@ -54,7 +54,7 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 	}
 
 	@Override
-	public String getRole(final PageParameter pp) {
+	public String getPageRole(final PageParameter pp) {
 		return logContext.getModule().getManagerRole();
 	}
 
