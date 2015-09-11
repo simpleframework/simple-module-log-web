@@ -7,13 +7,11 @@ import net.simpleframework.ado.bean.AbstractIdBean;
 import net.simpleframework.ado.bean.IIdBeanAware;
 import net.simpleframework.common.FileUtils;
 import net.simpleframework.common.coll.KVMap;
-import net.simpleframework.ctx.InjectCtx;
 import net.simpleframework.ctx.common.bean.AttachmentFile;
 import net.simpleframework.module.common.content.Attachment;
 import net.simpleframework.module.common.content.IAttachmentService;
 import net.simpleframework.module.common.web.content.hdl.AbstractAttachmentExHandler;
-import net.simpleframework.module.log.IDownloadLogService;
-import net.simpleframework.module.log.ILogContext;
+import net.simpleframework.module.log.ILogContextAware;
 import net.simpleframework.module.log.web.page.DownloadLogPage;
 import net.simpleframework.mvc.AbstractMVCPage;
 import net.simpleframework.mvc.PageParameter;
@@ -33,25 +31,21 @@ import net.simpleframework.mvc.component.ext.attachments.AttachmentUtils;
  *         http://www.simpleframework.net
  */
 public abstract class AbstractAttachmentLogHandler<T extends Attachment, M extends AbstractIdBean>
-		extends AbstractAttachmentExHandler<T, M> {
-
-	@InjectCtx
-	protected ILogContext logContext;
+		extends AbstractAttachmentExHandler<T, M> implements ILogContextAware {
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onDownloaded(final Object beanId, final String topic, final File oFile) {
 		super.onDownloaded(beanId, topic, oFile);
 
-		final IDownloadLogService logService = logContext.getDownloadLogService();
-		logService
-				.log(beanId, oFile.length(), FileUtils.getFilenameExtension(oFile.getName()), topic);
+		_logDownloadService.log(beanId, oFile.length(),
+				FileUtils.getFilenameExtension(oFile.getName()), topic);
 
 		// 设置下载次数
 		final IAttachmentService<T> service = getAttachmentService();
 		final T t = service.getBean(beanId);
 		if (t != null) {
-			t.setDownloads(logService.countLog(t));
+			t.setDownloads(_logDownloadService.countLog(t));
 			service.update(new String[] { "downloads" }, t);
 		}
 	}

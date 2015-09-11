@@ -57,7 +57,7 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 	@Transaction(context = ILogContext.class)
 	public IForward doDelete(final ComponentParameter cp) {
 		final Object[] ids = StringUtils.split(cp.getParameter("id"));
-		logContext.getDownloadLogService().delete(ids);
+		_logDownloadService.delete(ids);
 		return new JavascriptForward("$Actions['DownloadLogPage_tbl']();");
 	}
 
@@ -96,7 +96,7 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 			if (bean == null) {
 				return DataQueryUtils.nullQuery();
 			}
-			return logContext.getDownloadLogService().queryLog(bean);
+			return _logDownloadService.queryLog(bean);
 		}
 
 		@Override

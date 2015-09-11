@@ -100,7 +100,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	@Transaction(context = ILogContext.class)
 	public IForward doDelete(final ComponentParameter cp) {
 		final Object[] ids = StringUtils.split(cp.getParameter("id"));
-		logContext.getEntityUpdateLogService().delete(ids);
+		_logUpdateService.delete(ids);
 		return new JavascriptForward("$Actions['EntityUpdateLogPage_tbl']();");
 	}
 
@@ -216,7 +216,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 			}
 			cp.addFormParameter(page.getBeanIdParameter(cp),
 					bean instanceof IIdBeanAware ? ((IIdBeanAware) bean).getId() : bean);
-			return logContext.getEntityUpdateLogService().queryLog(bean);
+			return _logUpdateService.queryLog(bean);
 		}
 
 		@Override

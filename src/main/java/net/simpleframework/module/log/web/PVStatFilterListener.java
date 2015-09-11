@@ -12,7 +12,6 @@ import javax.servlet.FilterChain;
 import net.simpleframework.common.Convert;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.module.log.ILogContextAware;
-import net.simpleframework.module.log.IPVLogService;
 import net.simpleframework.module.log.PVLog;
 import net.simpleframework.mvc.IFilterListener;
 import net.simpleframework.mvc.IMVCConst;
@@ -43,10 +42,9 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 	final Map<String, PVStat> stats = new ConcurrentHashMap<String, PVStat>();
 
 	void updateStats() {
-		final IPVLogService lservice = logContext.getPVLogService();
 		for (final Map.Entry<String, PVStat> e : stats.entrySet()) {
 			final String[] arr = StringUtils.split(e.getKey(), "-");
-			final PVLog log = lservice.getPVLog(Convert.toInt(arr[0]), Convert.toInt(arr[1]),
+			final PVLog log = _logPVService.getPVLog(Convert.toInt(arr[0]), Convert.toInt(arr[1]),
 					Convert.toInt(arr[2]), Convert.toInt(arr[3]));
 			final PVStat _stat = e.getValue();
 			log.setPv(log.getPv() + _stat.pv);
@@ -59,7 +57,7 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 				log.setMinTime(Math.min(log.getMinTime(), _stat.minTime));
 				log.setMaxTime(Math.max(log.getMaxTime(), _stat.maxTime));
 			}
-			lservice.update(log);
+			_logPVService.update(log);
 		}
 		stats.clear();
 	}

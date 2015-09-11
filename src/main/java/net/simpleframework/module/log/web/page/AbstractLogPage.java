@@ -1,8 +1,7 @@
 package net.simpleframework.module.log.web.page;
 
-import net.simpleframework.ctx.InjectCtx;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
-import net.simpleframework.module.log.ILogContext;
+import net.simpleframework.module.log.ILogContextAware;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.template.lets.OneTableTemplatePage;
 
@@ -12,10 +11,8 @@ import net.simpleframework.mvc.template.lets.OneTableTemplatePage;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class AbstractLogPage extends OneTableTemplatePage implements ILogConst {
-
-	@InjectCtx
-	protected static ILogContext logContext;
+public abstract class AbstractLogPage extends OneTableTemplatePage implements ILogConst,
+		ILogContextAware {
 
 	/* 子类定义监听的实体Bean对象 */
 	protected Object getBean(final PageParameter pp) {
