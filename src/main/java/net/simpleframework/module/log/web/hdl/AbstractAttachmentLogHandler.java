@@ -45,7 +45,7 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 		final IAttachmentService<T> service = getAttachmentService();
 		final T t = service.getBean(beanId);
 		if (t != null) {
-			t.setDownloads(_logDownloadService.countLog(t));
+			t.setDownloads(_logDownloadService.clog(t));
 			service.update(new String[] { "downloads" }, t);
 		}
 	}

@@ -96,7 +96,7 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 			if (bean == null) {
 				return DataQueryUtils.nullQuery();
 			}
-			return _logDownloadService.queryLog(bean);
+			return _logDownloadService.queryLogs(bean);
 		}
 
 		@Override

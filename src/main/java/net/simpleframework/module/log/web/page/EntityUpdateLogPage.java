@@ -216,7 +216,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 			}
 			cp.addFormParameter(page.getBeanIdParameter(cp),
 					bean instanceof IIdBeanAware ? ((IIdBeanAware) bean).getId() : bean);
-			return _logUpdateService.queryLog(bean);
+			return _logUpdateService.queryLogs(bean);
 		}
 
 		@Override
