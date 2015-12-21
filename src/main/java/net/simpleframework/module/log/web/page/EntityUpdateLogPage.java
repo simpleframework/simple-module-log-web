@@ -52,7 +52,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		super.onForward(pp);
 
 		addTablePagerBean(pp, "EntityUpdateLogPage_tbl", EntityFieldTable.class).setShowCheckbox(
-				isRoleMember(pp));
+				isPageRole(pp));
 
 		// delete
 		addDeleteAjaxRequest(pp, "EntityUpdateLogPage_delete");
@@ -69,7 +69,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 				.addColumn(setColumnProperties(newColumn(COL_FROMVAL)))
 				.addColumn(setColumnProperties(newColumn(COL_TOVAL)))
 				.addColumn(setColumnProperties(newColumn(COL_IP)));
-		if (isRoleMember(pp)) {
+		if (isPageRole(pp)) {
 			tablePager.addColumn(TablePagerColumn.OPE(60));
 		}
 		return tablePager;
@@ -184,7 +184,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	@Override
 	public ElementList getLeftElements(final PageParameter pp) {
 		final ElementList el = ElementList.of(LinkButton.closeBtn());
-		if (isRoleMember(pp)) {
+		if (isPageRole(pp)) {
 			el.append(
 					SpanElement.SPACE,
 					LinkButton.deleteBtn().setOnclick(
