@@ -20,6 +20,7 @@ import net.simpleframework.mvc.IForward;
 import net.simpleframework.mvc.JavascriptForward;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
+import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.common.element.LinkButton;
 import net.simpleframework.mvc.common.element.Option;
@@ -62,7 +63,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	protected TablePagerBean addTablePagerBean(final PageParameter pp, final String name,
 			final Class<? extends ITablePagerHandler> tHdl) {
 		final TablePagerBean tablePager = (TablePagerBean) super.addTablePagerBean(pp, name, tHdl)
-				.setDetailField(TablePagerColumn.DESCRIPTION).setPageItems(50);
+				.setResize(false).setDetailField(TablePagerColumn.DESCRIPTION).setPageItems(50);
 		tablePager.addColumn(setColumnProperties(newColumn(COL_VALNAME)))
 				.addColumn(setColumnProperties(newColumn(COL_USERTEXT)))
 				.addColumn(setColumnProperties(newColumn(COL_CREATEDATE)))
@@ -84,9 +85,9 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		} else if (COL_CREATEDATE.equals(name)) {
 			col.setColumnText($m("EntityUpdateLogPage.6")).setWidth(115).setPropertyClass(Date.class);
 		} else if (COL_FROMVAL.equals(name)) {
-			col.setColumnText($m("EntityUpdateLogPage.2"));
+			col.setColumnText($m("EntityUpdateLogPage.2")).setTextAlign(ETextAlign.center);
 		} else if (COL_TOVAL.equals(name)) {
-			col.setColumnText($m("EntityUpdateLogPage.3"));
+			col.setColumnText($m("EntityUpdateLogPage.3")).setTextAlign(ETextAlign.center);
 		} else if (COL_IP.equals(name)) {
 			col.setColumnText($m("EntityUpdateLogPage.5")).setWidth(110);
 		}
