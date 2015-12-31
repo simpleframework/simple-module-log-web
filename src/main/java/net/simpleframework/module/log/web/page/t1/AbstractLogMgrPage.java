@@ -60,9 +60,9 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 
 	protected TablePagerBean addTablePagerBean(final PageParameter pp,
 			final Class<? extends LogTbl> tblClass) {
-		return (TablePagerBean) addTablePagerBean(pp, "AbstractLogMgrPage_tbl").setPageItems(50)
-				.setPagerBarLayout(EPagerBarLayout.bottom).setContainerId("tbl_" + hashId)
-				.setHandlerClass(tblClass);
+		return (TablePagerBean) addTablePagerBean(pp, "AbstractLogMgrPage_tbl", tblClass)
+				.setPageItems(50).setPagerBarLayout(EPagerBarLayout.bottom)
+				.setContainerId("tbl_" + hashId);
 	}
 
 	protected abstract IDbBeanService<?> getBeanService();
