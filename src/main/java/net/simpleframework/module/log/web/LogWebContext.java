@@ -7,7 +7,7 @@ import net.simpleframework.ctx.ModuleFunctions;
 import net.simpleframework.module.log.impl.LogContext;
 import net.simpleframework.module.log.web.page.t1.LoginLogMgrPage;
 import net.simpleframework.module.log.web.page.t1.PVStatMgrPage;
-import net.simpleframework.mvc.IMVCContextVar;
+import net.simpleframework.mvc.MVCContext;
 import net.simpleframework.mvc.ctx.WebModuleFunction;
 
 /**
@@ -16,14 +16,14 @@ import net.simpleframework.mvc.ctx.WebModuleFunction;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class LogWebContext extends LogContext implements IMVCContextVar {
+public class LogWebContext extends LogContext {
 
 	@Override
 	public void onInit(final IApplicationContext application) throws Exception {
 		super.onInit(application);
 
 		if (Convert.toBool(application.getContextSettings().getProperty("mvc.pvstat"))) {
-			mvcContext.addFilterListener(sListener = new PVStatFilterListener());
+			MVCContext.get().addFilterListener(sListener = new PVStatFilterListener());
 		}
 	}
 

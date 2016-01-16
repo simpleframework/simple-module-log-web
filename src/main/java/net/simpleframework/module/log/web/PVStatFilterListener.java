@@ -14,7 +14,7 @@ import net.simpleframework.common.StringUtils;
 import net.simpleframework.module.log.ILogContextAware;
 import net.simpleframework.module.log.PVLog;
 import net.simpleframework.mvc.IFilterListener;
-import net.simpleframework.mvc.IMVCConst;
+import net.simpleframework.mvc.MVCConst;
 import net.simpleframework.mvc.PageRequestResponse;
 
 /**
@@ -86,7 +86,7 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 					stat.uv.add(sessionId);
 				}
 
-				final int pt = Convert.toInt(rRequest.getSessionAttr(IMVCConst.PAGELOAD_TIME));
+				final int pt = Convert.toInt(rRequest.getSessionAttr(MVCConst.PAGELOAD_TIME));
 				stat.averageTime += pt;
 
 				if (stat.minTime == 0 || pt < stat.minTime) {
