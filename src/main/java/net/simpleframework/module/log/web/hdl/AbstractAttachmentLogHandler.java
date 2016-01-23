@@ -87,9 +87,9 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 		@Override
 		protected Object getTopic(final PageParameter pp, final AttachmentFile attachment) {
 			final ComponentParameter cp = AttachmentUtils.get(pp);
-			return new LinkElement(super.getTopic(pp, attachment)).setOnclick(JS.loc(DownloadUtils
-					.getDownloadHref(attachment, (Class<? extends IDownloadHandler>) cp
-							.getComponentHandler().getClass())));
+			final String dloc = DownloadUtils.getDownloadHref(attachment,
+					(Class<? extends IDownloadHandler>) cp.getComponentHandler().getClass());
+			return new LinkElement(super.getTopic(pp, attachment)).setOnclick(JS.loc(dloc, true));
 		}
 
 		@Override
