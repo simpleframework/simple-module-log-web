@@ -1,11 +1,9 @@
 package net.simpleframework.module.log.web.hdl;
 
-import java.io.File;
 import java.util.Map;
 
 import net.simpleframework.ado.bean.AbstractIdBean;
 import net.simpleframework.ado.bean.IIdBeanAware;
-import net.simpleframework.common.FileUtils;
 import net.simpleframework.common.coll.KVMap;
 import net.simpleframework.ctx.common.bean.AttachmentFile;
 import net.simpleframework.module.common.content.Attachment;
@@ -35,12 +33,11 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void onDownloaded(final Object beanId, final String topic, final File oFile) {
-		super.onDownloaded(beanId, topic, oFile);
+	public void onDownloaded(final Object beanId, final long length, final String filetype,
+			final String topic) {
+		super.onDownloaded(beanId, length, filetype, topic);
 
-		_logDownloadService.log(beanId, oFile.length(),
-				FileUtils.getFilenameExtension(oFile.getName()), topic);
-
+		_logDownloadService.log(beanId, length, filetype, topic);
 		// 设置下载次数
 		final IAttachmentService<T> service = getAttachmentService();
 		final T t = service.getBean(beanId);
