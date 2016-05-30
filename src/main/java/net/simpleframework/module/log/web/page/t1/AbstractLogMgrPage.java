@@ -55,7 +55,7 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 
 	@Override
 	public String getPageRole(final PageParameter pp) {
-		return logContext.getModule().getManagerRole();
+		return getPageManagerRole(pp);
 	}
 
 	protected TablePagerBean addTablePagerBean(final PageParameter pp,
