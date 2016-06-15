@@ -68,7 +68,7 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 			cal.set(Calendar.YEAR, _getYear(pp));
 			cal.set(Calendar.MONTH, _getMonth(pp));
 			cal.set(Calendar.DAY_OF_MONTH, 1);
-			cal.add(Calendar.DAY_OF_MONTH, -1);
+			cal.add(Calendar.DATE, -1);
 			count = cal.get(Calendar.DAY_OF_MONTH);
 			title = $m("PVStatMgrPage.6");
 		} else if (m) {
