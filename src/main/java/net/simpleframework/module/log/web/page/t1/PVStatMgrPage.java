@@ -132,7 +132,8 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 
 	protected HighchartBean addHighchartBean(final PageParameter pp, final String name) {
 		final HighchartBean hc = addComponentBean(pp, name, HighchartBean.class);
-		hc.setChart(new HcChart().setHeight(420).setMarginTop(40).setMarginRight(30));
+		hc.setChart(new HcChart().setBackgroundColor("#FFF").setHeight(420).setMarginTop(40)
+				.setMarginRight(30));
 		return hc;
 	}
 
