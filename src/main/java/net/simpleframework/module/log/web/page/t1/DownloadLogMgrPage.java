@@ -6,8 +6,8 @@ import java.util.Map;
 
 import net.simpleframework.common.FileUtils;
 import net.simpleframework.common.coll.KVMap;
-import net.simpleframework.module.log.DownloadLog;
 import net.simpleframework.module.log.IDownloadLogService;
+import net.simpleframework.module.log.bean.DownloadLog;
 import net.simpleframework.mvc.PageMapping;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;

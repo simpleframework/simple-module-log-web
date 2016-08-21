@@ -8,7 +8,7 @@ import net.simpleframework.common.ID;
 import net.simpleframework.common.coll.KVMap;
 import net.simpleframework.common.web.html.HtmlUtils;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
-import net.simpleframework.module.log.EntityDeleteLog;
+import net.simpleframework.module.log.bean.EntityDeleteLog;
 import net.simpleframework.module.log.web.page.EntityUpdateLogPage;
 import net.simpleframework.mvc.PageMapping;
 import net.simpleframework.mvc.PageParameter;
