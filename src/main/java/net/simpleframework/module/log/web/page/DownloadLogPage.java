@@ -18,7 +18,6 @@ import net.simpleframework.mvc.IForward;
 import net.simpleframework.mvc.JavascriptForward;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
-import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.component.ComponentParameter;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
@@ -49,12 +48,9 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 				// .addColumn(TablePagerColumn.DATE(COL_CREATEDATE,
 				// $m("DownloadLogPage.1")))
 				.addColumn(TablePagerColumn.DATE(COL_LASTUPDATE, $m("DownloadLogPage.5")))
-				.addColumn(
-						new TablePagerColumn(COL_IP, $m("DownloadLogPage.2"), 100)
-								.setTextAlign(ETextAlign.center))
-				.addColumn(
-						new TablePagerColumn(COL_FILESIZE, $m("DownloadLogPage.4"), 80)
-								.setTextAlign(ETextAlign.center)).addColumn(TablePagerColumn.DESCRIPTION());
+				.addColumn(new TablePagerColumn(COL_IP, $m("DownloadLogPage.2"), 100).center())
+				.addColumn(new TablePagerColumn(COL_FILESIZE, $m("DownloadLogPage.4"), 80).center())
+				.addColumn(TablePagerColumn.DESCRIPTION());
 		if (pp.isLmember(PermissionConst.ROLE_MODULE_MANAGER)) {
 			tablePager.addColumn(TablePagerColumn.OPE(60));
 		}
