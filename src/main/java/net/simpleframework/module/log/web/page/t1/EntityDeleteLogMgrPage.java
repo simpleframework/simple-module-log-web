@@ -98,14 +98,14 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 					final ButtonElement logBtn = new ButtonElement($m("EntityDeleteLogMgrPage.6"));
 					final ID beanId = log.getBeanId();
 					if (beanId != null) {
-						logBtn.setOnclick("$Actions['EntityDeleteLogMgrPage_logWin']('beanId=" + beanId
-								+ "');");
+						logBtn.setOnclick(
+								"$Actions['EntityDeleteLogMgrPage_logWin']('beanId=" + beanId + "');");
 					} else {
 						logBtn.setDisabled(true);
 					}
 					sb.append(logBtn).append(SpanElement.SPACE);
-					sb.append(ButtonElement.deleteBtn().setOnclick(
-							"$Actions['AbstractLogMgrPage_delete']('id=" + id + "');"));
+					sb.append(ButtonElement.deleteBtn()
+							.setOnclick("$Actions['AbstractLogMgrPage_delete']('id=" + id + "');"));
 					kv.add(TablePagerColumn.OPE, sb.toString());
 					return kv;
 				}

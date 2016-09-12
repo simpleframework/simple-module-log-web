@@ -20,7 +20,6 @@ import net.simpleframework.mvc.IForward;
 import net.simpleframework.mvc.JavascriptForward;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
-import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.common.element.LinkButton;
 import net.simpleframework.mvc.common.element.Option;
@@ -52,8 +51,8 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
-		addTablePagerBean(pp, "EntityUpdateLogPage_tbl", EntityFieldTable.class).setShowCheckbox(
-				isPageRole(pp));
+		addTablePagerBean(pp, "EntityUpdateLogPage_tbl", EntityFieldTable.class)
+				.setShowCheckbox(isPageRole(pp));
 
 		// delete
 		addDeleteAjaxRequest(pp, "EntityUpdateLogPage_delete");
@@ -85,9 +84,9 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		} else if (COL_CREATEDATE.equals(name)) {
 			col.setColumnText($m("EntityUpdateLogPage.6")).setWidth(115).setPropertyClass(Date.class);
 		} else if (COL_FROMVAL.equals(name)) {
-			col.setColumnText($m("EntityUpdateLogPage.2")).setTextAlign(ETextAlign.center);
+			col.setColumnText($m("EntityUpdateLogPage.2")).center();
 		} else if (COL_TOVAL.equals(name)) {
-			col.setColumnText($m("EntityUpdateLogPage.3")).setTextAlign(ETextAlign.center);
+			col.setColumnText($m("EntityUpdateLogPage.3")).center();
 		} else if (COL_IP.equals(name)) {
 			col.setColumnText($m("EntityUpdateLogPage.5")).setWidth(110);
 		}
@@ -125,7 +124,8 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		return oVal;
 	}
 
-	protected Map<String, Object> getRowData(final ComponentParameter cp, final EntityUpdateLog field) {
+	protected Map<String, Object> getRowData(final ComponentParameter cp,
+			final EntityUpdateLog field) {
 		final KVMap kv = new KVMap();
 		final String valName = field.getValName();
 		final DbTableColumn col = getTableColumns(cp, valName);
@@ -143,8 +143,8 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		}
 
 		final StringBuilder sb = new StringBuilder();
-		sb.append(ButtonElement.deleteBtn().setOnclick(
-				"$Actions['EntityUpdateLogPage_delete']('id=" + field.getId() + "');"));
+		sb.append(ButtonElement.deleteBtn()
+				.setOnclick("$Actions['EntityUpdateLogPage_delete']('id=" + field.getId() + "');"));
 		kv.add(TablePagerColumn.OPE, sb.toString());
 		return kv;
 	}
@@ -186,10 +186,8 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 	public ElementList getLeftElements(final PageParameter pp) {
 		final ElementList el = ElementList.of(LinkButton.closeBtn());
 		if (isPageRole(pp)) {
-			el.append(
-					SpanElement.SPACE,
-					LinkButton.deleteBtn().setOnclick(
-							"$Actions['EntityUpdateLogPage_tbl'].doAct('EntityUpdateLogPage_delete');"));
+			el.append(SpanElement.SPACE, LinkButton.deleteBtn().setOnclick(
+					"$Actions['EntityUpdateLogPage_tbl'].doAct('EntityUpdateLogPage_delete');"));
 		}
 		return el;
 	}

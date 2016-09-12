@@ -97,9 +97,8 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 			data = _logPVService.getMonthStat(_getYear(pp));
 		} else {
 			addCalendarBean(pp, "PVStatMgrPage_cal").setClearButton(false)
-					.setJsCloseCallback(
-							"$Actions.loc('" + url(PVStatMgrPage.class)
-									+ "?date=' + date.format('yyyy-MM-dd'))");
+					.setJsCloseCallback("$Actions.loc('" + url(PVStatMgrPage.class)
+							+ "?date=' + date.format('yyyy-MM-dd'))");
 
 			final String[] arr = StringUtils.split(Convert.toDateString(_getDate(pp), "yyyy-MM-dd"),
 					"-");
@@ -172,8 +171,9 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 			el.append(SpanElement.SPACE, mSelect);
 		}
 		if (!y) {
-			el.append(new CalendarInput("idPVStatMgrPage_cal").setCalendarComponent(
-					"PVStatMgrPage_cal").setText(Convert.toDateString(_getDate(pp), "yyyy-MM-dd")));
+			el.append(
+					new CalendarInput("idPVStatMgrPage_cal").setCalendarComponent("PVStatMgrPage_cal")
+							.setText(Convert.toDateString(_getDate(pp), "yyyy-MM-dd")));
 		}
 		return el;
 	}
@@ -184,13 +184,13 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 		final boolean m = _isMonth(pp);
 		final int year = _getYear(pp);
 		return ElementList.of(
-				new LinkButton($m("PVStatMgrPage.11")).setHref(url(PVStatMgrPage.class)).setChecked(
-						!m && !d),
-				new LinkButton($m("PVStatMgrPage.12")).setHref(
-						url(PVStatMgrPage.class, "year=" + year + "&month=" + _getMonth(pp))).setChecked(
-						d),
-				new LinkButton($m("PVStatMgrPage.13"))
-						.setHref(url(PVStatMgrPage.class, "year=" + year)).setChecked(m));
+				new LinkButton($m("PVStatMgrPage.11")).setHref(url(PVStatMgrPage.class))
+						.setChecked(!m && !d),
+				new LinkButton($m("PVStatMgrPage.12"))
+						.setHref(url(PVStatMgrPage.class, "year=" + year + "&month=" + _getMonth(pp)))
+						.setChecked(d),
+				new LinkButton($m("PVStatMgrPage.13")).setHref(url(PVStatMgrPage.class, "year=" + year))
+						.setChecked(m));
 	}
 
 	@Override

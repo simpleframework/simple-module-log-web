@@ -57,7 +57,8 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 	public static class LoginLogTbl extends LogTbl {
 
 		@Override
-		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
+		protected Map<String, Object> getRowData(final ComponentParameter cp,
+				final Object dataObject) {
 			final LoginLog log = (LoginLog) dataObject;
 			final ID id = log.getId();
 			final KVMap kv = new KVMap();
@@ -66,10 +67,8 @@ public class LoginLogMgrPage extends AbstractLogMgrPage {
 			kv.add(COL_LOGOUTDATE, log.getLogoutDate());
 			kv.add(COL_IP, log.getIp());
 			kv.add(TablePagerColumn.DESCRIPTION, HtmlUtils.convertHtmlLines(log.getDescription()));
-			kv.add(
-					TablePagerColumn.OPE,
-					ButtonElement.deleteBtn().setOnclick(
-							"$Actions['AbstractLogMgrPage_delete']('id=" + id + "');"));
+			kv.add(TablePagerColumn.OPE, ButtonElement.deleteBtn()
+					.setOnclick("$Actions['AbstractLogMgrPage_delete']('id=" + id + "');"));
 			return kv;
 		}
 	}

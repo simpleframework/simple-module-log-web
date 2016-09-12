@@ -35,8 +35,8 @@ import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implements ILogConst,
-		ILogContextAware {
+public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage
+		implements ILogConst, ILogContextAware {
 	@Override
 	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
@@ -76,8 +76,8 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 
 	@Override
 	public ElementList getLeftElements(final PageParameter pp) {
-		return ElementList.of(LinkButton.deleteBtn().setOnclick(
-				"$Actions['AbstractLogMgrPage_tbl'].doAct('AbstractLogMgrPage_delete');"));
+		return ElementList.of(LinkButton.deleteBtn()
+				.setOnclick("$Actions['AbstractLogMgrPage_tbl'].doAct('AbstractLogMgrPage_delete');"));
 	}
 
 	@Override
@@ -88,10 +88,10 @@ public abstract class AbstractLogMgrPage extends T1ResizedTemplatePage implement
 
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
-		return ElementList.of(createTabsElement(pp, TabButtons.of(new TabButton(
-				$m("LoginLogMgrPage.0"), url(LoginLogMgrPage.class)), new TabButton(
-				$m("EntityDeleteLogMgrPage.0"), url(EntityDeleteLogMgrPage.class)), new TabButton(
-				$m("DownloadLogMgrPage.0"), url(DownloadLogMgrPage.class)))));
+		return ElementList.of(createTabsElement(pp,
+				TabButtons.of(new TabButton($m("LoginLogMgrPage.0"), url(LoginLogMgrPage.class)),
+						new TabButton($m("EntityDeleteLogMgrPage.0"), url(EntityDeleteLogMgrPage.class)),
+						new TabButton($m("DownloadLogMgrPage.0"), url(DownloadLogMgrPage.class)))));
 	}
 
 	@Override

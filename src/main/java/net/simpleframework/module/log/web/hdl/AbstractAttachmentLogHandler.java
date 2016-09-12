@@ -58,8 +58,9 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 
 		@Override
 		protected Map<String, Object> getTblFormParameters(final ComponentParameter cp) {
-			return ((KVMap) super.getTblFormParameters(cp)).add(AttachmentUtils.BEAN_ID,
-					AttachmentUtils.get(cp).hashId()).add("id", cp.getParameter("id"));
+			return ((KVMap) super.getTblFormParameters(cp))
+					.add(AttachmentUtils.BEAN_ID, AttachmentUtils.get(cp).hashId())
+					.add("id", cp.getParameter("id"));
 		}
 
 		@Override
@@ -77,8 +78,8 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 
 			final AjaxRequestBean ajaxRequest = addAjaxRequest(pp, "AttachmentTooltipExPage_logPage",
 					AttachmentLogPage.class);
-			addWindowBean(pp, "AttachmentTooltipExPage_logWin", ajaxRequest).setHeight(480).setWidth(
-					800);
+			addWindowBean(pp, "AttachmentTooltipExPage_logWin", ajaxRequest).setHeight(480)
+					.setWidth(800);
 		}
 
 		@SuppressWarnings("unchecked")

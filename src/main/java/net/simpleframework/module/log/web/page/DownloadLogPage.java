@@ -18,7 +18,6 @@ import net.simpleframework.mvc.IForward;
 import net.simpleframework.mvc.JavascriptForward;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
-import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.component.ComponentParameter;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
@@ -44,17 +43,13 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, "DownloadLogPage_tbl",
 				DownloadLogTable.class).setFilter(false).setSort(false);
-		tablePager
-				.addColumn(new TablePagerColumn(COL_USERTEXT, $m("DownloadLogPage.0"), 100))
+		tablePager.addColumn(new TablePagerColumn(COL_USERTEXT, $m("DownloadLogPage.0"), 100))
 				// .addColumn(TablePagerColumn.DATE(COL_CREATEDATE,
 				// $m("DownloadLogPage.1")))
 				.addColumn(TablePagerColumn.DATE(COL_LASTUPDATE, $m("DownloadLogPage.5")))
-				.addColumn(
-						new TablePagerColumn(COL_IP, $m("DownloadLogPage.2"), 100)
-								.setTextAlign(ETextAlign.center))
-				.addColumn(
-						new TablePagerColumn(COL_FILESIZE, $m("DownloadLogPage.4"), 80)
-								.setTextAlign(ETextAlign.center)).addColumn(TablePagerColumn.DESCRIPTION());
+				.addColumn(new TablePagerColumn(COL_IP, $m("DownloadLogPage.2"), 100).center())
+				.addColumn(new TablePagerColumn(COL_FILESIZE, $m("DownloadLogPage.4"), 80).center())
+				.addColumn(TablePagerColumn.DESCRIPTION());
 		if (pp.isLmember(PermissionConst.ROLE_MODULE_MANAGER)) {
 			tablePager.addColumn(TablePagerColumn.OPE(60));
 		}
@@ -107,7 +102,8 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 		}
 
 		@Override
-		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
+		protected Map<String, Object> getRowData(final ComponentParameter cp,
+				final Object dataObject) {
 			final DownloadLog log = (DownloadLog) dataObject;
 			final KVMap kv = new KVMap();
 			final String userText = log.getUserText();
@@ -123,8 +119,8 @@ public abstract class DownloadLogPage extends AbstractLogPage {
 
 		protected String toOpeHTML(final ComponentParameter cp, final DownloadLog log) {
 			final StringBuilder sb = new StringBuilder();
-			sb.append(ButtonElement.deleteBtn().setOnclick(
-					"$Actions['DownloadLogPage_delete']('id=" + log.getId() + "');"));
+			sb.append(ButtonElement.deleteBtn()
+					.setOnclick("$Actions['DownloadLogPage_delete']('id=" + log.getId() + "');"));
 			return sb.toString();
 		}
 	}

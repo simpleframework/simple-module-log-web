@@ -1,6 +1,7 @@
 package net.simpleframework.module.log.web;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.common.Convert;
 import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.ModuleFunctions;
@@ -40,9 +41,9 @@ public class LogWebContext extends LogContext {
 	@Override
 	protected ModuleFunctions getFunctions() {
 		return ModuleFunctions.of(
-				new WebModuleFunction(this, LoginLogMgrPage.class).setName(
-						MODULE_NAME + "-LoginLogMgrPage").setText($m("LogContext.0")),
-				new WebModuleFunction(this, PVStatMgrPage.class)
-						.setName(MODULE_NAME + "-PVStatMgrPage").setText($m("LogWebContext.0")));
+				new WebModuleFunction(this, LoginLogMgrPage.class)
+						.setName(MODULE_NAME + "-LoginLogMgrPage").setText($m("LogContext.0")),
+				new WebModuleFunction(this, PVStatMgrPage.class).setName(MODULE_NAME + "-PVStatMgrPage")
+						.setText($m("LogWebContext.0")));
 	}
 }

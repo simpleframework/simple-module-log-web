@@ -52,13 +52,14 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
 		pp.putParameter(G, COL_CREATEDATE);
-		return super.getRightElements(pp).append(
-				createGroupElement(pp, "AbstractLogMgrPage_tbl", OPTION_CREATEDATE));
+		return super.getRightElements(pp)
+				.append(createGroupElement(pp, "AbstractLogMgrPage_tbl", OPTION_CREATEDATE));
 	}
 
 	public static class DownloadLogTbl extends LogTbl {
 		@Override
-		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
+		protected Map<String, Object> getRowData(final ComponentParameter cp,
+				final Object dataObject) {
 			final DownloadLog log = (DownloadLog) dataObject;
 			final KVMap kv = new KVMap();
 			kv.add(COL_USERTEXT, TemplateUtils.toIconUser(cp, log.getUserId(), log.getUserText()));
@@ -68,10 +69,8 @@ public class DownloadLogMgrPage extends AbstractLogMgrPage {
 			kv.add(COL_FILETYPE, log.getFiletype());
 			kv.add(COL_IP, log.getIp());
 			kv.add(TablePagerColumn.DESCRIPTION, log.getDescription());
-			kv.add(
-					TablePagerColumn.OPE,
-					ButtonElement.deleteBtn().setOnclick(
-							"$Actions['AbstractLogMgrPage_delete']('id=" + log.getId() + "');"));
+			kv.add(TablePagerColumn.OPE, ButtonElement.deleteBtn()
+					.setOnclick("$Actions['AbstractLogMgrPage_delete']('id=" + log.getId() + "');"));
 			return kv;
 		}
 	}
