@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.simpleframework.ado.bean.AbstractIdBean;
 import net.simpleframework.ado.bean.IIdBeanAware;
+import net.simpleframework.ado.bean.IUserAwareBean;
 import net.simpleframework.common.coll.KVMap;
 import net.simpleframework.ctx.common.bean.AttachmentFile;
 import net.simpleframework.module.common.content.Attachment;
@@ -97,7 +98,16 @@ public abstract class AbstractAttachmentLogHandler<T extends Attachment, M exten
 			if (downloads <= 0) {
 				return 0;
 			}
+
 			final ComponentParameter cp = AttachmentUtils.get(pp);
+			final AbstractIdBean owner = ((AbstractAttachmentExHandler<?, ?>) cp.getComponentHandler())
+					.owner(cp);
+			if (owner instanceof IUserAwareBean) {
+				if (!((IUserAwareBean) owner).getUserId().equals(pp.getLoginId())) {
+					return downloads;
+				}
+			}
+
 			final StringBuilder sb = new StringBuilder();
 			sb.append("$Actions['AttachmentTooltipExPage_logWin']('").append(AttachmentUtils.BEAN_ID)
 					.append("=").append(cp.hashId()).append("&id=").append(attachment.getId())
