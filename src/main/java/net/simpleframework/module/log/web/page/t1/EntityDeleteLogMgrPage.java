@@ -84,7 +84,6 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 				public Map<String, Object> getRowData(final ComponentParameter cp,
 						final Object dataObject) {
 					final EntityDeleteLog log = (EntityDeleteLog) dataObject;
-					final ID id = log.getId();
 					final KVMap kv = new KVMap();
 					kv.add(COL_TBLNAME, log.getTblName());
 					kv.add(COL_USERTEXT,
@@ -103,9 +102,12 @@ public class EntityDeleteLogMgrPage extends AbstractLogMgrPage {
 					} else {
 						logBtn.setDisabled(true);
 					}
-					sb.append(logBtn).append(SpanElement.SPACE);
-					sb.append(ButtonElement.deleteBtn()
-							.setOnclick("$Actions['AbstractLogMgrPage_delete']('id=" + id + "');"));
+					sb.append(logBtn);
+					// sb.append(SpanElement.SPACE);
+					// sb.append(ButtonElement.deleteBtn()
+					// .setOnclick("$Actions['AbstractLogMgrPage_delete']('id=" +
+					// log.getId()
+					// + "');"));
 					kv.add(TablePagerColumn.OPE, sb.toString());
 					return kv;
 				}
