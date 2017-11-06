@@ -202,7 +202,7 @@ public abstract class EntityUpdateLogPage extends AbstractLogPage {
 		return ElementList.of(createGroupElement(pp, "EntityUpdateLogPage_tbl", OPTION_1, OPTION_2));
 	}
 
-	protected static final Map<Object, Object> opIdCache = new HashMap<Object, Object>();
+	protected static final Map<Object, Object> opIdCache = new HashMap<>();
 
 	public static class EntityFieldTable extends GroupDbTablePagerHandler {
 

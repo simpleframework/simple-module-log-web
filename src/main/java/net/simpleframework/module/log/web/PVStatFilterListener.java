@@ -28,9 +28,9 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 	class PVStat {
 		int pv = 0;
 
-		Set<String> uv = new HashSet<String>();
+		Set<String> uv = new HashSet<>();
 
-		Set<String> ip = new HashSet<String>();
+		Set<String> ip = new HashSet<>();
 
 		int averageTime = 0;
 
@@ -39,7 +39,7 @@ public class PVStatFilterListener implements IFilterListener, ILogContextAware {
 		int maxTime = 0;
 	}
 
-	final Map<String, PVStat> stats = new ConcurrentHashMap<String, PVStat>();
+	final Map<String, PVStat> stats = new ConcurrentHashMap<>();
 
 	void updateStats() {
 		for (final Map.Entry<String, PVStat> e : stats.entrySet()) {

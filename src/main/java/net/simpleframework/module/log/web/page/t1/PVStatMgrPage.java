@@ -80,7 +80,7 @@ public class PVStatMgrPage extends T1ResizedTemplatePage implements ILogContextA
 			title = $m("PVStatMgrPage.1");
 		}
 
-		final List<String> l = new ArrayList<String>();
+		final List<String> l = new ArrayList<>();
 		for (int i = start; i < count; i++) {
 			l.add(String.valueOf(i + 1));
 		}
