@@ -13,7 +13,7 @@ import net.simpleframework.common.BeanUtils;
 import net.simpleframework.common.Convert;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.module.log.ILogContextAware;
-import net.simpleframework.module.log.PVLog;
+import net.simpleframework.module.log.bean.PVLog;
 import net.simpleframework.mvc.PageMapping;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.CalendarInput;

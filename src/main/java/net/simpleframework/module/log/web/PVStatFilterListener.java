@@ -12,7 +12,7 @@ import javax.servlet.FilterChain;
 import net.simpleframework.common.Convert;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.module.log.ILogContextAware;
-import net.simpleframework.module.log.PVLog;
+import net.simpleframework.module.log.bean.PVLog;
 import net.simpleframework.mvc.IFilterListener;
 import net.simpleframework.mvc.MVCConst;
 import net.simpleframework.mvc.PageRequestResponse;

@@ -8,7 +8,7 @@ import net.simpleframework.common.ID;
 import net.simpleframework.common.coll.KVMap;
 import net.simpleframework.common.web.html.HtmlUtils;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
-import net.simpleframework.module.log.LoginLog;
+import net.simpleframework.module.log.bean.LoginLog;
 import net.simpleframework.mvc.PageMapping;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
